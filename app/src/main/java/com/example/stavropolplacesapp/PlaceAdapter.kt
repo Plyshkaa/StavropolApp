@@ -1,9 +1,11 @@
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stavropolplacesapp.PlaceDetailActivity
 import com.squareup.picasso.Picasso // Если используешь Picasso для загрузки изображений
 import com.example.stavropolplacesapp.R
 
@@ -16,13 +18,22 @@ class PlacesAdapter(private var places: List<Place>) : RecyclerView.Adapter<Plac
     }
 
     override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
-        // Привязываем данные к элементам
         val place = places[position]
         holder.nameTextView.text = place.name
         holder.descriptionTextView.text = place.description
+        Picasso.get().load(place.imageUrl).into(holder.imageView)
 
-        // Загружаем изображение с помощью Picasso
-        Picasso.get().load(place.image_url).into(holder.imageView)
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, PlaceDetailActivity::class.java).apply {
+                putExtra("name", place.name)
+                putExtra("description", place.description)
+                putExtra("imageUrl", place.imageUrl)
+                putExtra("latitude", place.latitude)
+                putExtra("longitude", place.longitude)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
