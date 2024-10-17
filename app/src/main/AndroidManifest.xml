@@ -45,6 +45,7 @@
         <activity
             android:name=".PlaceDetailActivity"
             android:exported="true"
-            android:label="Place Detail" />
+            android:label="Place Detail"
+            tools:ignore="DuplicateActivity" />
     </application>
 </manifest>

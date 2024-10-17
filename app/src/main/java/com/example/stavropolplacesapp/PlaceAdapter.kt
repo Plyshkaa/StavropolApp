@@ -23,6 +23,11 @@ class PlacesAdapter(private var places: List<Place>) : RecyclerView.Adapter<Plac
         holder.descriptionTextView.text = place.description
         Picasso.get().load(place.imageUrl).into(holder.imageView)
 
+        // Устанавливаем данные для элементов View
+        holder.nameTextView.text = place.name
+        holder.descriptionTextView.text = place.description
+        Picasso.get().load(place.imageUrl).into(holder.imageView)
+
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             val intent = Intent(context, PlaceDetailActivity::class.java).apply {
@@ -31,6 +36,8 @@ class PlacesAdapter(private var places: List<Place>) : RecyclerView.Adapter<Plac
                 putExtra("imageUrl", place.imageUrl)
                 putExtra("latitude", place.latitude)
                 putExtra("longitude", place.longitude)
+                // Пример передачи координат в виде строки
+                putExtra("coordinates", "${place.latitude}°N ${place.longitude}°E")
             }
             context.startActivity(intent)
         }

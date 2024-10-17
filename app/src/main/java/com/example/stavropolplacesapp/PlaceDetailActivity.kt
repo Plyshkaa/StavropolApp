@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-
 class PlaceDetailActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -24,6 +23,7 @@ class PlaceDetailActivity : AppCompatActivity() {
         // Получаем данные из интента
         val imageUrl = intent.getStringExtra("imageUrl")
         val description = intent.getStringExtra("description")
+        val coordinates = intent.getStringExtra("coordinates") // Извлекаем координаты
         val placeLatitude = intent.getDoubleExtra("latitude", 0.0)
         val placeLongitude = intent.getDoubleExtra("longitude", 0.0)
 
@@ -31,10 +31,13 @@ class PlaceDetailActivity : AppCompatActivity() {
         val placeImageView: ImageView = findViewById(R.id.placeImageView)
         val descriptionTextView: TextView = findViewById(R.id.descriptionTextView)
         val distanceTextView: TextView = findViewById(R.id.distanceTextView)
+        val coordinatesTextView: TextView = findViewById(R.id.coordinatesTextView)
+        val timeTextView: TextView = findViewById(R.id.timeTextView) // Привязка TextView для координат
 
         // Установка изображения и описания
         Glide.with(this).load(imageUrl).into(placeImageView)
         descriptionTextView.text = description
+        coordinatesTextView.text = coordinates
 
         // Инициализация FusedLocationProviderClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -51,14 +54,16 @@ class PlaceDetailActivity : AppCompatActivity() {
                 LOCATION_PERMISSION_REQUEST_CODE
             )
         } else {
-            getCurrentLocationAndCalculateDistance(placeLatitude, placeLongitude, distanceTextView)
+            getCurrentLocationAndCalculateDistance(placeLatitude, placeLongitude, distanceTextView, timeTextView)
+
         }
     }
 
     private fun getCurrentLocationAndCalculateDistance(
         placeLatitude: Double,
         placeLongitude: Double,
-        distanceTextView: TextView
+        distanceTextView: TextView,
+        timeTextView: TextView
     ) {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -68,13 +73,6 @@ class PlaceDetailActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         fusedLocationClient.lastLocation
@@ -90,16 +88,15 @@ class PlaceDetailActivity : AppCompatActivity() {
                         longitude = placeLongitude
                     }
 
-// Форматируем результат: если дробной части нет, показываем целое число
-                    // Вычисляем расстояние и устанавливаем его в TextView
+                    // Вычисляем расстояние и округляем его до целого числа
                     val distance = userLocation.distanceTo(placeLocation) / 1000 // в км
-
-// Округляем до целого числа
                     val roundedDistance = distance.toInt()
 
-// Устанавливаем округленное значение
+                    // Устанавливаем округленное значение в TextView
                     distanceTextView.text = "Расстояние до объекта: $roundedDistance км"
-
+                    // Рассчитываем примерное время пребывания (50 км/ч)
+                    val estimatedTime = if (roundedDistance > 0) (roundedDistance / 50.0 * 60).toInt() else 1
+                    timeTextView.text = "Примерное время пребывания: $estimatedTime ч"
                 }
             }
     }
@@ -108,4 +105,3 @@ class PlaceDetailActivity : AppCompatActivity() {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 }
-
