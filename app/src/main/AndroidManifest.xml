@@ -33,6 +33,8 @@
         <activity android:name=".ZemlyakiActivity" />
         <activity android:name=".PersonDetailActivity" /> <!-- Добавляем PersonDetailActivity -->
         <activity android:name=".RegionDetailActivity" />
+        <activity android:name=".AfishaActivity" />
+
 
 
         <activity

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
+import androidx.appcompat.widget.Toolbar // Правильный импорт
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.viewpager.widget.ViewPager
@@ -67,6 +68,12 @@ class MainActivity : AppCompatActivity() {
         val cardRegion = findViewById<CardView>(R.id.card_view_region)
         cardRegion.setOnClickListener {
             val intent = Intent(this, RegionDetailActivity::class.java)
+            startActivity(intent)
+        }
+        // Плитка для раздела "Афиша"
+        val afishaCardView: CardView = findViewById(R.id.card_view_afisha)
+        afishaCardView.setOnClickListener {
+            val intent = Intent(this, AfishaActivity::class.java)
             startActivity(intent)
         }
     }
