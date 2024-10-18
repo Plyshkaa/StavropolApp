@@ -6,10 +6,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stavropolplacesapp.PlaceDetailActivity
-import com.squareup.picasso.Picasso // Если используешь Picasso для загрузки изображений
 import com.example.stavropolplacesapp.R
+import com.squareup.picasso.Picasso
 
-class PlacesAdapter(private var places: List<Place>) : RecyclerView.Adapter<PlacesAdapter.PlaceViewHolder>() {
+class PlacesAdapter(private var places: List<Place>) :
+    RecyclerView.Adapter<PlacesAdapter.PlaceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
         // Создаем новый элемент для списка
@@ -58,6 +59,7 @@ class PlacesAdapter(private var places: List<Place>) : RecyclerView.Adapter<Plac
         // Инициализируем элементы представления
         val nameTextView: TextView = itemView.findViewById(R.id.placeName)
         val descriptionTextView: TextView = itemView.findViewById(R.id.placeDescription)
-        val imageView: ImageView = itemView.findViewById(R.id.placeImage) // Убедитесь, что этот ID соответствует вашему XML
+        val imageView: ImageView =
+            itemView.findViewById(R.id.placeImage) // Убедитесь, что этот ID соответствует вашему XML
     }
 }

@@ -122,7 +122,7 @@
                         android:id="@+id/timeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Примерное время пребывания"
+                        android:text="Примерное время до пребытия"
                         android:textSize="16sp"
                         android:paddingStart="8dp"
                         android:textColor="@android:color/black"

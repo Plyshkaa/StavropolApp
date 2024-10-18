@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -13,7 +12,6 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.tabs.TabLayout
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,12 +39,17 @@ class MainActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
 
         // Добавляем URL-адреса изображений из объектов places
-        imageUrls.addAll(listOf(
-            "https://extraguide.ru/images/pthumb/blog/2022/09-08-vwtdox-fontan-na-perspektivnom.cd9f7e96.jpg",
-            "https://extraguide.ru/images/pthumb/blog/2022/09-08-2la5ks-sengileevskoe-vodohranilishche.cd9f7e96.jpg",
-            "https://extraguide.ru/images/pthumb/blog/2022/09-08-qot1np-nemetskiy-most.cd9f7e96.jpg",
-            // Добавьте остальные URL из вашего JSON
-        ))
+        imageUrls.addAll(
+            listOf(
+                "https://extraguide.ru/images/pthumb/blog/2022/09-08-vwtdox-fontan-na-perspektivnom.cd9f7e96.jpg",
+                "https://extraguide.ru/images/pthumb/blog/2022/09-08-2la5ks-sengileevskoe-vodohranilishche.cd9f7e96.jpg",
+                "https://extraguide.ru/images/pthumb/blog/2022/09-08-qot1np-nemetskiy-most.cd9f7e96.jpg",
+                "https://extraguide.ru/images/pthumb/blog/2022/09-07-et8039-park-pobedy.cd9f7e96.jpg",
+                "https://extraguide.ru/images/pthumb/blog/2022/09-07-et8039-park-pobedy.cd9f7e96.jpg",
+                "https://extraguide.ru/images/pthumb/blog/2022/09-08-vhga90-stavropolskiy-zoopark.cd9f7e96.jpg",
+                // Добавьте остальные URL из вашего JSON
+            )
+        )
 
         // Запуск анимации смены изображений
         startImageAnimation()
