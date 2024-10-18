@@ -12,13 +12,13 @@ import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.tabs.TabLayout
-
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager
     private lateinit var tabs: TabLayout
-    private lateinit var cardView: CardView
+    private lateinit var cardViewPlaces: CardView
+    private lateinit var cardViewRegion: CardView
+    private lateinit var cardViewFamousPeople: CardView
     private lateinit var imageView: ImageView
 
     private val imageUrls = mutableListOf<String>()
@@ -31,23 +31,20 @@ class MainActivity : AppCompatActivity() {
 
         viewPager = findViewById(R.id.view_pager)
         tabs = findViewById(R.id.tabs)
-        cardView = findViewById(R.id.card_view)
+        cardViewPlaces = findViewById(R.id.card_view)
+        cardViewFamousPeople = findViewById(R.id.card_view_famous_people)
         imageView = findViewById(R.id.main_image)
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
         viewPager.adapter = adapter
         tabs.setupWithViewPager(viewPager)
 
-        // Добавляем URL-адреса изображений из объектов places
+        // Добавляем URL-адреса изображений
         imageUrls.addAll(
             listOf(
                 "https://extraguide.ru/images/pthumb/blog/2022/09-08-vwtdox-fontan-na-perspektivnom.cd9f7e96.jpg",
                 "https://extraguide.ru/images/pthumb/blog/2022/09-08-2la5ks-sengileevskoe-vodohranilishche.cd9f7e96.jpg",
-                "https://extraguide.ru/images/pthumb/blog/2022/09-08-qot1np-nemetskiy-most.cd9f7e96.jpg",
-                "https://extraguide.ru/images/pthumb/blog/2022/09-07-et8039-park-pobedy.cd9f7e96.jpg",
-                "https://extraguide.ru/images/pthumb/blog/2022/09-07-et8039-park-pobedy.cd9f7e96.jpg",
-                "https://extraguide.ru/images/pthumb/blog/2022/09-08-vhga90-stavropolskiy-zoopark.cd9f7e96.jpg",
-                // Добавьте остальные URL из вашего JSON
+                "https://extraguide.ru/images/pthumb/blog/2022/09-08-qot1np-nemetskiy-most.cd9f7e96.jpg"
             )
         )
 
@@ -55,8 +52,14 @@ class MainActivity : AppCompatActivity() {
         startImageAnimation()
 
         // Переход в PlacesActivity при нажатии на карточку "Места"
-        cardView.setOnClickListener {
+        cardViewPlaces.setOnClickListener {
             val intent = Intent(this, PlacesActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Переход в ZemlyakiActivity при нажатии на карточку "Земляки"
+        cardViewFamousPeople.setOnClickListener {
+            val intent = Intent(this, ZemlyakiActivity::class.java)
             startActivity(intent)
         }
     }
@@ -71,10 +74,10 @@ class MainActivity : AppCompatActivity() {
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imageView)
 
-                // Увеличиваем индекс, чтобы перейти к следующему изображению
+                // Увеличиваем индекс для следующего изображения
                 currentIndex = (currentIndex + 1) % imageUrls.size
 
-                // Повторяем каждую 3 секунду
+                // Повторяем каждые 3 секунды
                 handler.postDelayed(this, intervalMillis)
             }
         }
@@ -83,6 +86,8 @@ class MainActivity : AppCompatActivity() {
         handler.post(runnable)
     }
 }
+
+
 
 
 

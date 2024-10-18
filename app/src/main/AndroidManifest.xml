@@ -23,12 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".PlacesActivity" />
         <activity
             android:name=".PlaceDetailActivity"
             android:exported="true"
             android:label="Place Detail" />
+
+
+        <activity android:name=".PlacesActivity" />
+        <activity android:name=".ZemlyakiActivity" />
+        <activity android:name=".PersonDetailActivity" /> <!-- Добавляем PersonDetailActivity -->
 
         <activity
             android:name=".MainActivity"
@@ -40,12 +43,6 @@
             android:name=".PlacesListActivity"
             android:exported="true"
             android:label="Places" />
-
-        <!-- Добавляем PlaceDetailActivity -->
-        <activity
-            android:name=".PlaceDetailActivity"
-            android:exported="true"
-            android:label="Place Detail"
-            tools:ignore="DuplicateActivity" />
     </application>
+
 </manifest>

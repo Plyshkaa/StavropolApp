@@ -21,13 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
-            <!-- Это ImageView, который будет использоваться для смены изображений -->
             <ImageView
                 android:id="@+id/main_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/orig"
-            android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/orig" />
 
             <TextView
                 android:id="@+id/main_title"
@@ -38,7 +37,7 @@
                 android:text="Самые красивые места в области"
                 android:textSize="14sp"
                 android:textColor="@android:color/white"
-                android:background="#80000000"/>
+                android:background="#80000000" />
 
             <TextView
                 android:id="@+id/main_description"
@@ -51,25 +50,128 @@
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:background="#80000000"
-                android:padding="8dp"/>
+                android:padding="8dp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- TabLayout для вкладок -->
+    <!-- Горизонтальный LinearLayout для плиток "О регионе" и "Земляки" -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Плитка для раздела "О регионе" -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_region"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:clickable="true"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:id="@+id/image_about_region"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_region" />
+
+                <TextView
+                    android:id="@+id/title_about_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="О регионе"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:background="#80000000" />
+
+                <TextView
+                    android:id="@+id/main_description_region"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="16dp"
+                    android:text="О регионе"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="#80000000"
+                    android:padding="8dp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Плитка для раздела "Земляки" -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_famous_people"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:clickable="true"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:id="@+id/image_famous_people"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_zemlyki" />
+
+                <TextView
+                    android:id="@+id/title_famous_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Известные земляки"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:background="#80000000" />
+
+                <TextView
+                    android:id="@+id/main_description_famous_people"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="16dp"
+                    android:text="Земляки"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="#80000000"
+                    android:padding="8dp" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- TabLayout и ViewPager, скрыты по умолчанию -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-    <!-- ViewPager для отображения фрагментов -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="8dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </LinearLayout>

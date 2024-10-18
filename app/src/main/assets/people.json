@@ -1,0 +1,34 @@
+{
+  "people": [
+    {
+      "name": "Горбачев Михаил Сергеевич",
+      "description": "Горбачев Михаил Сергеевич родился 2 марта 1931 г. в селе Привольном Красногвардейского района Ставропольского края...",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZlXzCS9mzl1BBiS1l0ffWunEQDpY0P-lcCg&s"
+    },
+    {
+      "name": "Чемеркин Андрей Иванович",
+      "description": "Чемеркин Андрей Иванович родился 17 февраля 1972 в п. Солнечнодольск, Ставропольского края...",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-YE8Z-WilihprSA9r8msCTZ2m2xSE8EiHGA&s"
+    },
+    {
+      "name": "Солженицын Александр Исаевич",
+      "description": "Солженицын Александр Исаевич (Исаакиевич) – русский писатель, общественный деятель. Родился 11 декабря 1918 в Кисловодске...",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcf31lx3PNarojo5EirBhvSh5VPRTdi669Q&s"
+    },
+    {
+      "name": "Андропов Юрий Владимирович",
+      "description": "Юрий Владимирович Андропов родился 15 июня 1914 г. в семье железнодорожного телеграфиста на станции Нагутская...",
+      "imageUrl": "https://cdnn21.img.ria.ru/images/17397/37/173973720_0:0:2696:2696_1920x0_80_0_0_8dcc2664a188ecf5c4a3c27c54d8890b.jpg"
+    },
+    {
+      "name": "Куликов Анатолий Сергеевич",
+      "description": "Куликов Анатолий Сергеевич родился 4 сентября 1946 г. в пос. Айгурский Апанасенковского района Ставропольского края...",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKwbuWylYYWM0rXH-gj9tsHTxtGXqNlZoFFQ&s"
+    },
+    {
+      "name": "Бережная Елена Викторовна",
+      "description": "Бережная Елена Викторовна родилась 11 октября 1977 г. в г. Невинномысске Ставропольского края. Олимпийская чемпионка по фигурному катанию...",
+      "imageUrl": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6587340692a5031d82f05ee1_65873407cf03b714f2359c89/scale_1200"
+    }
+  ]
+}
