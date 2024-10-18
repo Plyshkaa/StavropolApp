@@ -15,7 +15,10 @@ object JsonUtils {
             val gson = Gson()
             val placesResponse = gson.fromJson(jsonString, PlacesResponse::class.java)
 
-            Log.d("JsonUtils", "Places loaded: ${placesResponse.places.size}") // Логируем количество мест
+            Log.d(
+                "JsonUtils",
+                "Places loaded: ${placesResponse.places.size}"
+            ) // Логируем количество мест
             placesResponse.places // Возвращаем список мест
         } catch (e: IOException) {
             Log.e("JsonUtils", "Ошибка при загрузке мест: ${e.message}")

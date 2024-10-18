@@ -1,5 +1,6 @@
 package com.example.stavropolplacesapp
 
+import JsonUtils
 import Place
 import PlacesAdapter
 import android.os.Bundle
@@ -41,7 +42,11 @@ class PlacesActivity : AppCompatActivity() {
                     placesList = places
                     placesAdapter.updateData(placesList)
                 } else {
-                    Toast.makeText(this@PlacesActivity, "Ошибка загрузки данных", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@PlacesActivity,
+                        "Ошибка загрузки данных",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.example.stavropolplacesapp
 
+import JsonUtils
 import Place
 import PlacesAdapter
 import android.os.Bundle
@@ -7,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,13 +35,18 @@ class PlacesListActivity : AppCompatActivity() {
 
     private fun loadPlaces() {
         CoroutineScope(Dispatchers.IO).launch {
-            val places = JsonUtils.loadPlacesFromJson(this@PlacesListActivity) // Используем JsonUtils
+            val places =
+                JsonUtils.loadPlacesFromJson(this@PlacesListActivity) // Используем JsonUtils
             withContext(Dispatchers.Main) {
                 if (places != null) {
                     placesList = places
                     placesAdapter.updateData(placesList)
                 } else {
-                    Toast.makeText(this@PlacesListActivity, "Ошибка загрузки данных", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@PlacesListActivity,
+                        "Ошибка загрузки данных",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

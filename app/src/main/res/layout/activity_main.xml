@@ -21,12 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="200dp">
 
+            <!-- Это ImageView, который будет использоваться для смены изображений -->
             <ImageView
                 android:id="@+id/main_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/orig"
-                android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"/>
 
             <TextView
                 android:id="@+id/main_title"

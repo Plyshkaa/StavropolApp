@@ -4,8 +4,8 @@ data class Place(
     val description: String,
     val latitude: Double,
     val longitude: Double,
-    val image_url: String,
-    val map_link: String,
+    val imageUrl: String,
+    val mapLink: String,
     val rating: Double,
     val type: String
 )
