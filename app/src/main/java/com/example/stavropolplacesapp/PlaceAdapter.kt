@@ -34,6 +34,7 @@ class PlacesAdapter(private var places: List<Place>) :
             val intent = Intent(context, PlaceDetailActivity::class.java).apply {
                 putExtra("name", place.name)
                 putExtra("description", place.description)
+                putExtra("fullDescription", place.fullDescription)
                 putExtra("imageUrl", place.imageUrl)
                 putExtra("latitude", place.latitude)
                 putExtra("longitude", place.longitude)

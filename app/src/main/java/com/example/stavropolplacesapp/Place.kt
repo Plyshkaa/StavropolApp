@@ -2,6 +2,7 @@ data class Place(
     val id: Int,
     val name: String,
     val description: String,
+    val fullDescription: String,
     val latitude: Double,
     val longitude: Double,
     val imageUrl: String,

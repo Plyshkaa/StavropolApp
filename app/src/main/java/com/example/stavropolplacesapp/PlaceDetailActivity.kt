@@ -55,7 +55,7 @@ class PlaceDetailActivity : AppCompatActivity() {
 
         // Получаем данные из интента
         val imageUrl = intent.getStringExtra("imageUrl")
-        val description = intent.getStringExtra("description")
+        val fullDescription = intent.getStringExtra("fullDescription")
         val coordinates = intent.getStringExtra("coordinates") // Извлекаем координаты
 
 
@@ -69,7 +69,7 @@ class PlaceDetailActivity : AppCompatActivity() {
 
         // Установка изображения и описания
         Glide.with(this).load(imageUrl).into(placeImageView)
-        descriptionTextView.text = description
+        descriptionTextView.text = fullDescription
         coordinatesTextView.text = coordinates
 
         // Инициализация FusedLocationProviderClient
