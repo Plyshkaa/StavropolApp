@@ -27,6 +27,11 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/orig" />
+            <!-- Полупрозрачный черный фон для затемнения -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#33000000" /> <!-- Черный цвет с прозрачностью 20% -->
 
             <TextView
                 android:id="@+id/main_title"
@@ -34,10 +39,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:padding="16dp"
-                android:text="Самые красивые места в области"
                 android:textSize="14sp"
                 android:textColor="@android:color/white"
-                android:background="#80000000" />
+                android:background="@android:color/transparent" />
 
             <TextView
                 android:id="@+id/main_description"
@@ -45,11 +49,11 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
-                android:text="Места"
+                android:text="Места которые стоит посетить"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:background="#80000000"
+                android:background="@android:color/transparent"
                 android:padding="8dp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -74,7 +78,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="200dp"
+                android:background="@android:color/transparent">
 
                 <ImageView
                     android:id="@+id/image_about_region"
@@ -82,6 +87,11 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_region" />
+                <!-- Полупрозрачный черный фон для затемнения -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#33000000" /> <!-- Черный цвет с прозрачностью 20% -->
 
                 <TextView
                     android:id="@+id/title_about_region"
@@ -89,10 +99,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="О регионе"
                     android:textSize="14sp"
                     android:textColor="@android:color/white"
-                    android:background="#80000000" />
+                    android:background="@android:color/transparent" />
 
                 <TextView
                     android:id="@+id/main_description_region"
@@ -104,7 +113,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
-                    android:background="#80000000"
+                    android:background="@android:color/transparent"
                     android:padding="8dp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -118,7 +127,8 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
             android:clickable="true"
-            android:layout_margin="8dp">
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -129,7 +139,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_zemlyki" />
+                    android:src="@drawable/ic_zemlyki"
+                    android:background="@android:color/transparent"/>
+                <!-- Полупрозрачный черный фон для затемнения -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#33000000" /> <!-- Черный цвет с прозрачностью 20% -->
 
                 <TextView
                     android:id="@+id/title_famous_people"
@@ -137,10 +153,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Известные земляки"
                     android:textSize="14sp"
                     android:textColor="@android:color/white"
-                    android:background="#80000000" />
+                    android:background="@android:color/transparent" />
 
                 <TextView
                     android:id="@+id/main_description_famous_people"
@@ -152,7 +167,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
-                    android:background="#80000000"
+                    android:background="@android:color/transparent"
                     android:padding="8dp" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

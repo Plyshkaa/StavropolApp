@@ -62,6 +62,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ZemlyakiActivity::class.java)
             startActivity(intent)
         }
+
+        // В методе onCreate для MainActivity
+        val cardRegion = findViewById<CardView>(R.id.card_view_region)
+        cardRegion.setOnClickListener {
+            val intent = Intent(this, RegionDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun startImageAnimation() {

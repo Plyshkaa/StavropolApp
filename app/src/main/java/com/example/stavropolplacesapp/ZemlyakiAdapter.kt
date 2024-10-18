@@ -1,5 +1,6 @@
 package com.example.stavropolplacesapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-data class Person(val name: String, val imageUrl: String)
+data class Person(val name: String, val imageUrl: String, val description: String)
 
 class ZemlyakiAdapter(private val people: List<Person>, private val onClick: (Person) -> Unit) :
     RecyclerView.Adapter<ZemlyakiAdapter.PersonViewHolder>() {
@@ -27,8 +28,17 @@ class ZemlyakiAdapter(private val people: List<Person>, private val onClick: (Pe
         val person = people[position]
         holder.personName.text = person.name
         Glide.with(holder.itemView.context).load(person.imageUrl).into(holder.personImage)
-        holder.itemView.setOnClickListener { onClick(person) }
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, PersonDetailActivity::class.java).apply {
+                putExtra("personName", person.name)
+                putExtra("imageUrl", person.imageUrl)
+                putExtra("description", person.description) // Передаем описание
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = people.size
 }
+

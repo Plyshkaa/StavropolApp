@@ -1,12 +1,14 @@
 package com.example.stavropolplacesapp
 
 import android.content.Intent
+import com.example.stavropolplacesapp.Person
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 import java.io.IOException
+
 
 class ZemlyakiActivity : AppCompatActivity() {
 
@@ -25,6 +27,7 @@ class ZemlyakiActivity : AppCompatActivity() {
             val intent = Intent(this, PersonDetailActivity::class.java).apply {
                 putExtra("personName", person.name)
                 putExtra("imageUrl", person.imageUrl)
+                putExtra("description", person.description)
             }
             startActivity(intent)
         }
@@ -53,15 +56,23 @@ class ZemlyakiActivity : AppCompatActivity() {
 
     private fun parsePeopleFromJson(jsonString: String): List<Person> {
         val peopleList = mutableListOf<Person>()
+
+        // Преобразуем строку JSON в объект
         val jsonObject = JSONObject(jsonString)
+
+        // Получаем массив "people"
         val jsonArray = jsonObject.getJSONArray("people")
 
+        // Проходим по массиву
         for (i in 0 until jsonArray.length()) {
             val jsonObjectPerson = jsonArray.getJSONObject(i)
             val name = jsonObjectPerson.getString("name")
             val imageUrl = jsonObjectPerson.getString("imageUrl")
-            peopleList.add(Person(name, imageUrl))
+            val description = jsonObjectPerson.getString("description") // Извлекаем описание
+            peopleList.add(Person(name, imageUrl, description)) // Добавляем описание в Person
         }
         return peopleList
     }
+
+
 }
