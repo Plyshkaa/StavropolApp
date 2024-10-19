@@ -8,6 +8,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightGray">#D3D3D3</color>
 
+    <!-- Синий цвет для активных элементов меню -->
+    <color name="blue">#2196F3</color>
+
+    <!-- Серый цвет для неактивных элементов меню -->
+    <color name="gray">#BDBDBD</color>
+
 
     <!-- Добавляем цвета для темы -->
     <color name="colorPrimary">#FF6200EE</color>  <!-- Этот цвет может быть, например, purple_500 -->

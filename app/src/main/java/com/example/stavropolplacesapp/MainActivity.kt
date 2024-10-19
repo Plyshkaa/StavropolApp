@@ -1,22 +1,19 @@
 package com.example.stavropolplacesapp
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
-import androidx.appcompat.widget.Toolbar // Правильный импорт
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.viewpager.widget.ViewPager
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewPager: ViewPager
-    private lateinit var tabs: TabLayout
     private lateinit var cardViewPlaces: CardView
     private lateinit var cardViewRegion: CardView
     private lateinit var cardViewFamousPeople: CardView
@@ -30,17 +27,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewPager = findViewById(R.id.view_pager)
-        tabs = findViewById(R.id.tabs)
-        cardViewPlaces = findViewById(R.id.card_view)
+        // Initialize views
+        cardViewPlaces = findViewById(R.id.card_view_places)
         cardViewFamousPeople = findViewById(R.id.card_view_famous_people)
         imageView = findViewById(R.id.main_image)
 
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager.adapter = adapter
-        tabs.setupWithViewPager(viewPager)
-
-        // Добавляем URL-адреса изображений
+        // Add images to the image URL list
         imageUrls.addAll(
             listOf(
                 "https://extraguide.ru/images/pthumb/blog/2022/09-08-vwtdox-fontan-na-perspektivnom.cd9f7e96.jpg",
@@ -49,28 +41,28 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // Запуск анимации смены изображений
+        // Start image animation
         startImageAnimation()
 
-        // Переход в PlacesActivity при нажатии на карточку "Места"
+        // Set up navigation between activities
         cardViewPlaces.setOnClickListener {
             val intent = Intent(this, PlacesActivity::class.java)
             startActivity(intent)
         }
 
-        // Переход в ZemlyakiActivity при нажатии на карточку "Земляки"
         cardViewFamousPeople.setOnClickListener {
             val intent = Intent(this, ZemlyakiActivity::class.java)
             startActivity(intent)
         }
 
-        // В методе onCreate для MainActivity
+        // Card for Region
         val cardRegion = findViewById<CardView>(R.id.card_view_region)
         cardRegion.setOnClickListener {
             val intent = Intent(this, RegionDetailActivity::class.java)
             startActivity(intent)
         }
-        // Плитка для раздела "Афиша"
+
+        // Card for Afisha
         val afishaCardView: CardView = findViewById(R.id.card_view_afisha)
         afishaCardView.setOnClickListener {
             val intent = Intent(this, AfishaActivity::class.java)
@@ -82,32 +74,21 @@ class MainActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper())
         val runnable = object : Runnable {
             override fun run() {
-                // Используем Glide для плавной смены изображений
+                // Use Glide to smoothly transition images
                 Glide.with(this@MainActivity)
                     .load(imageUrls[currentIndex])
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(imageView)
 
-                // Увеличиваем индекс для следующего изображения
+                // Increment index for next image
                 currentIndex = (currentIndex + 1) % imageUrls.size
 
-                // Повторяем каждые 3 секунды
+                // Repeat every 3 seconds
                 handler.postDelayed(this, intervalMillis)
             }
         }
 
-        // Запускаем смену изображений
+        // Start image switching
         handler.post(runnable)
     }
 }
-
-
-
-
-
-
-
-
-
-
-

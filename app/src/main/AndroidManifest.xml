@@ -23,19 +23,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".PlaceDetailActivity"
             android:exported="true"
             android:label="Place Detail" />
-
 
         <activity android:name=".PlacesActivity" />
         <activity android:name=".ZemlyakiActivity" />
         <activity android:name=".PersonDetailActivity" /> <!-- Добавляем PersonDetailActivity -->
         <activity android:name=".RegionDetailActivity" />
         <activity android:name=".AfishaActivity" />
-
-
 
         <activity
             android:name=".MainActivity"
