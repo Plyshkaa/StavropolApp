@@ -31,6 +31,7 @@
             android:layout_marginBottom="8dp"
             android:text="ФИО"
             android:textSize="18sp"
+            android:justificationMode="inter_word"
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:gravity="center"

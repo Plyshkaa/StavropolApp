@@ -7,4 +7,8 @@
         android:id="@+id/navigation_places"
         android:icon="@drawable/ic_places"
         android:title="Места" />
+    <item
+        android:id="@+id/navigation_region"
+        android:icon="@drawable/ic_places"
+        android:title="Места" />
 </menu>

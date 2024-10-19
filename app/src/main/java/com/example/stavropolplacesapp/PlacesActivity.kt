@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PlacesActivity : AppCompatActivity() {
+class PlacesActivity : BaseActivity() {
 
     private lateinit var placesRecyclerView: RecyclerView
     private lateinit var placesAdapter: PlacesAdapter
