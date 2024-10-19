@@ -1,4 +1,4 @@
-package com.example.stavropolplacesapp
+package com.example.stavropolplacesapp.famous_people
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.stavropolplacesapp.R
 
-data class Person(val name: String, val imageUrl: String, val description: String)
+data class FamousPeoplePerson(val name: String, val imageUrl: String, val description: String)
 
-class ZemlyakiAdapter(private val people: List<Person>, private val onClick: (Person) -> Unit) :
+class ZemlyakiAdapter(private val people: List<FamousPeoplePerson>, private val onClick: (FamousPeoplePerson) -> Unit) :
     RecyclerView.Adapter<ZemlyakiAdapter.PersonViewHolder>() {
 
     class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

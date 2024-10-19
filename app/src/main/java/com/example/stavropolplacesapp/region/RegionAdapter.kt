@@ -1,4 +1,4 @@
-package com.example.stavropolplacesapp
+package com.example.stavropolplacesapp.region
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.stavropolplacesapp.R
 
 class RegionAdapter(private val regionDetails: List<RegionDetail>) : RecyclerView.Adapter<RegionAdapter.RegionViewHolder>() {
 

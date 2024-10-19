@@ -1,9 +1,10 @@
-package com.example.stavropolplacesapp
+package com.example.stavropolplacesapp.region
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stavropolplacesapp.R
 import org.json.JSONObject
 
 class RegionDetailActivity : AppCompatActivity() {

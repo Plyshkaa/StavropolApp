@@ -1,41 +1,56 @@
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
-    android:background="@android:color/white"> <!-- Белый фон для карточки -->
+    android:fitsSystemWindows="true"
+    >
 
-    <LinearLayout
+    <!-- Добавляем Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/black"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <!-- Фото человека с закруглёнными углами -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        tools:ignore="MissingConstraints"
         android:background="@android:color/white">
 
-        <!-- Изображение человека -->
         <ImageView
             android:id="@+id/person_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:background="@android:color/white"/> <!-- Изображение по размеру карточки -->
+            android:background="@android:color/white"/>
 
-        <!-- Текст с ФИО человека, под изображением -->
-        <TextView
-            android:id="@+id/person_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="ФИО"
-            android:textSize="18sp"
-            android:justificationMode="inter_word"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:background="@android:color/white"/> <!-- Текст под изображением, центрирован -->
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-</androidx.cardview.widget.CardView>
+    <!-- ФИО человека под карточкой -->
+    <TextView
+        android:id="@+id/person_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@id/card_view_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

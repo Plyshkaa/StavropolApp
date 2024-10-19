@@ -3,16 +3,18 @@ package com.example.stavropolplacesapp
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import android.Manifest
+import android.graphics.Color
+import android.view.View
+import com.example.stavropolplacesapp.afisha.AfishaActivity
+import com.example.stavropolplacesapp.famous_people.ZemlyakiActivity
+import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.region.RegionDetailActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +30,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkLocationPermission()
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+// Устанавливаем цвет статус-бара как прозрачный
+        window.statusBarColor = Color.TRANSPARENT
+
+// Чтобы сделать иконки и текст в статус-баре видимыми, используем флаг SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
 
         // Initialize views
         cardViewPlaces = findViewById(R.id.card_view_places)

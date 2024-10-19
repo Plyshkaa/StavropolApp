@@ -1,4 +1,4 @@
-package com.example.stavropolplacesapp
+package com.example.stavropolplacesapp.places
 
 import android.Manifest
 import android.content.Intent
@@ -10,10 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.graphics.Color
 import android.graphics.Paint
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
+import com.example.stavropolplacesapp.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 

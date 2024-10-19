@@ -1,10 +1,11 @@
-package com.example.stavropolplacesapp
+package com.example.stavropolplacesapp.afisha
 
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import com.example.stavropolplacesapp.R
 
 class AfishaActivity : AppCompatActivity() {
 

@@ -1,3 +1,5 @@
+package com.example.stavropolplacesapp.places
+
 data class Place(
     val id: Int,
     val name: String,
