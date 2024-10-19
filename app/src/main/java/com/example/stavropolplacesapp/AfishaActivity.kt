@@ -1,9 +1,10 @@
 package com.example.stavropolplacesapp
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 
 class AfishaActivity : AppCompatActivity() {
 
@@ -11,10 +12,23 @@ class AfishaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_afisha)
 
-        // Устанавливаем WebView для отображения афиши
+        // Находим WebView и контейнер с изображением
         val webView: WebView = findViewById(R.id.afishaWebView)
-        webView.webViewClient = WebViewClient() // Открывать страницы внутри WebView
-        webView.settings.javaScriptEnabled = true // Включить поддержку JavaScript
-        webView.loadUrl("https://afisha.yandex.ru/stavropol") // Загрузить афишу
+        val progressBarContainer: View = findViewById(R.id.progress_container)
+
+        // Включаем JavaScript
+        webView.settings.javaScriptEnabled = true
+
+        // Устанавливаем WebViewClient для открытия страниц внутри WebView
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                // Когда страница загружена, скрываем картинку загрузки и показываем WebView
+                progressBarContainer.visibility = View.GONE
+                webView.visibility = View.VISIBLE
+            }
+        }
+
+        // Загружаем URL
+        webView.loadUrl("https://afisha.yandex.ru/stavropol")
     }
 }
