@@ -11,7 +11,9 @@ import androidx.core.content.ContextCompat
 import android.Manifest
 import android.graphics.Color
 import android.view.View
+import android.widget.Button
 import com.example.stavropolplacesapp.afisha.AfishaActivity
+import com.example.stavropolplacesapp.eat.PlacesToEatActivity
 import com.example.stavropolplacesapp.famous_people.ZemlyakiActivity
 import com.example.stavropolplacesapp.places.PlacesActivity
 import com.example.stavropolplacesapp.region.RegionDetailActivity
@@ -69,7 +71,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AfishaActivity::class.java)
             startActivity(intent)
         }
+
+        // В вашем MainActivity, при нажатии на элемент интерфейса
+        val cardViewWhereToEat: CardView = findViewById(R.id.card_view_where_to_eat)
+        cardViewWhereToEat.setOnClickListener {
+            val intent = Intent(this, PlacesToEatActivity::class.java)
+            startActivity(intent)
+        }
     }
+
 
     private fun checkLocationPermission() {
         val preferences = getSharedPreferences("app_preferences", MODE_PRIVATE)

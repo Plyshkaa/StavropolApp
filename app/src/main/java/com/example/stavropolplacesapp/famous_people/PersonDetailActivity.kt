@@ -46,12 +46,12 @@ class PersonDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        // Делаем статус-бар прозрачным
-        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-
-        // Меняем цвет статус-бара на прозрачный
+        // Прозрачный статус-бар с видимыми иконками
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
+
+        // Используем светлый статус-бар для видимых иконок (черные иконки)
+        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
 
 

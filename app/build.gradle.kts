@@ -71,6 +71,8 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("androidx.gridlayout:gridlayout:1.0.0")
     implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation ("com.google.android.material:material:1.5.0")
 
 
 

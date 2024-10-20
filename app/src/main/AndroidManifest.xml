@@ -38,6 +38,8 @@
         <activity android:name=".region.RegionDetailActivity" />
         <activity android:name=".afisha.AfishaActivity" />
 
+        <activity android:name=".eat.PlacesToEatActivity"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
