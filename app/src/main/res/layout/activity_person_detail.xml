@@ -1,59 +1,61 @@
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:fitsSystemWindows="true"
     android:background="@android:color/white">
 
-    <LinearLayout
+    <!-- Toolbar для страницы -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end">
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="@android:color/black"
+        app:title="Детали"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <!-- Изображение человека -->
-        <ImageView
-            android:id="@+id/person_detail_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:fitsSystemWindows="true"
-            />
+    <!-- Основное содержимое со ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- Имя человека -->
-        <TextView
-            android:id="@+id/person_detail_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:paddingTop="8dp"
-            android:gravity="start"
-            android:paddingBottom="8dp"/>
-
-        <!-- Описание человека, с возможностью переключения -->
-        <TextView
-            android:id="@+id/person_detail_description"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:lineSpacingExtra="4dp" />
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">>
 
-        <!-- Кнопка для переключения описания -->
-        <Button
-            android:id="@+id/button_toggle_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="Показать больше"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#FF6200EE"
-            android:padding="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/custom_button_background" />
+            <!-- Изображение человека -->
+            <ImageView
+                android:id="@+id/person_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"/>
 
-    </LinearLayout>
-</ScrollView>
+            <!-- Описание человека -->
+            <TextView
+                android:id="@+id/person_detail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:lineSpacingExtra="4dp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

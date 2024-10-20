@@ -5,20 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:fitsSystemWindows="true"
-    >
-
-    <!-- Добавляем Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:navigationIconTint="@color/black"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    android:background="@android:color/transparent">
 
     <!-- Фото человека с закруглёнными углами -->
     <androidx.cardview.widget.CardView
@@ -27,28 +14,30 @@
         android:layout_height="200dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
-        tools:ignore="MissingConstraints"
-        android:background="@android:color/white">
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        tools:ignore="MissingConstraints"> <!-- Прозрачный фон -->
 
         <ImageView
             android:id="@+id/person_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:background="@android:color/white"/>
-
+            android:background="@android:color/transparent"/>
     </androidx.cardview.widget.CardView>
 
     <!-- ФИО человека под карточкой -->
     <TextView
         android:id="@+id/person_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:gravity="start"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/card_view_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
