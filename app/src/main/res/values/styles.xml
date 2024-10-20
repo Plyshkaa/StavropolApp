@@ -1,3 +1,45 @@
 <resources>
-    <!-- Можно оставить пустым или убрать, если не нужно -->
+    <!-- Стиль для активного состояния текста в BottomNavigationView -->
+    <style name="BottomNavigationActiveText" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blue</item> <!-- Цвет для активного элемента -->
+    </style>
+
+    <!-- Стиль для неактивного состояния текста в BottomNavigationView -->
+    <style name="BottomNavigationInactiveText" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/gray</item> <!-- Цвет для неактивного элемента -->
+    </style>
+
+    <!-- Стиль для полноэкранной активности с прозрачным статус-баром -->
+    <style name="AppTheme.NoActionBar.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Убираем ActionBar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- Делаем активность полноэкранной -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/black</item> <!-- Цвет текста в Toolbar -->
+        <item name="android:tint">@color/black</item> <!-- Цвет для иконок -->
+    </style>
+
+
+        <style name="AppTheme.TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+                <!-- Убираем ActionBar, если он есть -->
+                <item name="windowActionBar">false</item>
+                <item name="windowNoTitle">true</item>
+
+                <!-- Делаем статус-бар прозрачным -->
+                <item name="android:windowTranslucentStatus">true</item>
+                <item name="android:statusBarColor">@android:color/transparent</item>
+                <!-- Видимые иконки в статус-баре (чёрные) -->
+                <item name="android:windowLightStatusBar">true</item>
+
+        </style>
+
+
 </resources>

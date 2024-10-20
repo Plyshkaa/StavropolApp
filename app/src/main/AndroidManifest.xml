@@ -23,19 +23,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".PlaceDetailActivity"
+            android:name=".places.PlaceDetailActivity"
             android:exported="true"
             android:label="Place Detail" />
 
-
-        <activity android:name=".PlacesActivity" />
-        <activity android:name=".ZemlyakiActivity" />
-        <activity android:name=".PersonDetailActivity" /> <!-- Добавляем PersonDetailActivity -->
-        <activity android:name=".RegionDetailActivity" />
-        <activity android:name=".AfishaActivity" />
-
-
+        <activity android:name=".places.PlacesActivity" />
+        <activity android:name=".famous_people.ZemlyakiActivity" />
+        <activity
+            android:name=".famous_people.PersonDetailActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar"
+            /> <!-- Добавляем PersonDetailActivity -->
+        <activity android:name=".region.RegionDetailActivity" />
+        <activity android:name=".afisha.AfishaActivity" />
 
         <activity
             android:name=".MainActivity"
@@ -44,7 +45,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <activity
-            android:name=".PlacesListActivity"
+            android:name=".places.PlacesListActivity"
             android:exported="true"
             android:label="Places" />
     </application>

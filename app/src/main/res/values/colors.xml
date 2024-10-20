@@ -7,6 +7,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lightGray">#D3D3D3</color>
+    <color name="primaryColor">#303f9f</color>
+
+    <!-- Синий цвет для активных элементов меню -->
+    <color name="blue">#2196F3</color>
+
+    <!-- Серый цвет для неактивных элементов меню -->
+    <color name="gray">#BDBDBD</color>
 
 
     <!-- Добавляем цвета для темы -->

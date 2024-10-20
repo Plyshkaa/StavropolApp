@@ -1,5 +1,7 @@
 import android.content.Context
 import android.util.Log
+import com.example.stavropolplacesapp.places.Place
+import com.example.stavropolplacesapp.places.PlacesResponseList
 import com.google.gson.Gson
 import java.io.IOException
 
@@ -13,7 +15,7 @@ object JsonUtils {
 
             // Используем Gson для десериализации
             val gson = Gson()
-            val placesResponse = gson.fromJson(jsonString, PlacesResponse::class.java)
+            val placesResponse = gson.fromJson(jsonString, PlacesResponseList::class.java)
 
             Log.d(
                 "JsonUtils",

@@ -1,76 +1,69 @@
 package com.example.stavropolplacesapp
 
-
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.ImageView
-import androidx.appcompat.widget.Toolbar // Правильный импорт
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.google.android.material.tabs.TabLayout
-class MainActivity : AppCompatActivity() {
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.Manifest
+import android.graphics.Color
+import android.view.View
+import com.example.stavropolplacesapp.afisha.AfishaActivity
+import com.example.stavropolplacesapp.famous_people.ZemlyakiActivity
+import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.region.RegionDetailActivity
 
-    private lateinit var viewPager: ViewPager
-    private lateinit var tabs: TabLayout
+
+class MainActivity : AppCompatActivity() {
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1000
+
     private lateinit var cardViewPlaces: CardView
     private lateinit var cardViewRegion: CardView
     private lateinit var cardViewFamousPeople: CardView
     private lateinit var imageView: ImageView
 
-    private val imageUrls = mutableListOf<String>()
-    private var currentIndex = 0
-    private val intervalMillis = 3000L // 3 секунды
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        checkLocationPermission()
 
-        viewPager = findViewById(R.id.view_pager)
-        tabs = findViewById(R.id.tabs)
-        cardViewPlaces = findViewById(R.id.card_view)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+// Устанавливаем цвет статус-бара как прозрачный
+        window.statusBarColor = Color.TRANSPARENT
+
+// Чтобы сделать иконки и текст в статус-баре видимыми, используем флаг SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
+
+        // Initialize views
+        cardViewPlaces = findViewById(R.id.card_view_places)
         cardViewFamousPeople = findViewById(R.id.card_view_famous_people)
         imageView = findViewById(R.id.main_image)
 
-        val adapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager.adapter = adapter
-        tabs.setupWithViewPager(viewPager)
-
-        // Добавляем URL-адреса изображений
-        imageUrls.addAll(
-            listOf(
-                "https://extraguide.ru/images/pthumb/blog/2022/09-08-vwtdox-fontan-na-perspektivnom.cd9f7e96.jpg",
-                "https://extraguide.ru/images/pthumb/blog/2022/09-08-2la5ks-sengileevskoe-vodohranilishche.cd9f7e96.jpg",
-                "https://extraguide.ru/images/pthumb/blog/2022/09-08-qot1np-nemetskiy-most.cd9f7e96.jpg"
-            )
-        )
-
-        // Запуск анимации смены изображений
-        startImageAnimation()
-
-        // Переход в PlacesActivity при нажатии на карточку "Места"
+        // Set up navigation between activities
         cardViewPlaces.setOnClickListener {
             val intent = Intent(this, PlacesActivity::class.java)
             startActivity(intent)
         }
 
-        // Переход в ZemlyakiActivity при нажатии на карточку "Земляки"
         cardViewFamousPeople.setOnClickListener {
             val intent = Intent(this, ZemlyakiActivity::class.java)
             startActivity(intent)
         }
 
-        // В методе onCreate для MainActivity
+        // Card for Region
         val cardRegion = findViewById<CardView>(R.id.card_view_region)
         cardRegion.setOnClickListener {
             val intent = Intent(this, RegionDetailActivity::class.java)
             startActivity(intent)
         }
-        // Плитка для раздела "Афиша"
+
+        // Card for Afisha
         val afishaCardView: CardView = findViewById(R.id.card_view_afisha)
         afishaCardView.setOnClickListener {
             val intent = Intent(this, AfishaActivity::class.java)
@@ -78,36 +71,53 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startImageAnimation() {
-        val handler = Handler(Looper.getMainLooper())
-        val runnable = object : Runnable {
-            override fun run() {
-                // Используем Glide для плавной смены изображений
-                Glide.with(this@MainActivity)
-                    .load(imageUrls[currentIndex])
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(imageView)
+    private fun checkLocationPermission() {
+        val preferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
+        val isPermissionRequested = preferences.getBoolean("isPermissionRequested", false)
 
-                // Увеличиваем индекс для следующего изображения
-                currentIndex = (currentIndex + 1) % imageUrls.size
+        if (!isPermissionRequested) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
 
-                // Повторяем каждые 3 секунды
-                handler.postDelayed(this, intervalMillis)
+                // Запрос разрешения
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                    LOCATION_PERMISSION_REQUEST_CODE
+                )
+
+                // Сохраняем, что запрос разрешения был выполнен
+                preferences.edit().putBoolean("isPermissionRequested", true).apply()
+            } else {
+                onPermissionGranted()
+            }
+        } else {
+            onPermissionGranted()
+        }
+    }
+
+
+    private fun onPermissionGranted() {
+        // Логика для работы с местоположением, если разрешение уже есть
+        // Например, обновление данных местоположения
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Разрешение получено
+                onPermissionGranted()
+            } else {
+                // Обработка случая, если разрешение не было получено
             }
         }
-
-        // Запускаем смену изображений
-        handler.post(runnable)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
