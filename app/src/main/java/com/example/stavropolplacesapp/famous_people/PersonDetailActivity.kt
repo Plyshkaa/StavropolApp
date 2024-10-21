@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.stavropolplacesapp.R
 
@@ -30,26 +31,24 @@ class PersonDetailActivity : AppCompatActivity() {
         // Настройка Toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
         // Настройка кнопки назад
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Детали"
-
-        // Устанавливаем заголовок в Toolbar
-        supportActionBar?.title = personName
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+        toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.black)) // Устанавливаем чёрный цвет
+        // Устанавливаем заголовок в Toolbar
+        supportActionBar?.title = personName
+
+        // Прозрачный статус-бар с черными иконками
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = Color.TRANSPARENT
+
 
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
 
-        // Прозрачный статус-бар с видимыми иконками
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        window.statusBarColor = Color.TRANSPARENT
-
-        // Используем светлый статус-бар для видимых иконок (черные иконки)
-        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
 
 

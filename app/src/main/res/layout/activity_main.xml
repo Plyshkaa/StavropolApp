@@ -193,7 +193,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp">
+            android:layout_height="100dp">
 
             <ImageView
                 android:id="@+id/where_to_eat_image"
@@ -246,14 +246,14 @@
             <ImageView
                 android:id="@+id/afisha_image"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_afisha_placeholder" />
 
             <!-- Полупрозрачный черный фон для затемнения картинки -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
                 android:background="#33000000" /> <!-- Черный цвет с прозрачностью 20% -->
 
             <!-- Заголовок "Афиша" поверх изображения -->

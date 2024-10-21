@@ -33,7 +33,7 @@
         <activity android:name=".famous_people.ZemlyakiActivity" />
         <activity
             android:name=".famous_people.PersonDetailActivity"
-            android:theme="@style/AppTheme.TransparentStatusBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             /> <!-- Добавляем PersonDetailActivity -->
         <activity android:name=".region.RegionDetailActivity" />
         <activity android:name=".afisha.AfishaActivity" />

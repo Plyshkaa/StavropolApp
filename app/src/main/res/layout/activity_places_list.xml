@@ -17,12 +17,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:text="Места"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:titleTextColor="@android:color/black"
+            android:background="@android:color/white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:elevation="4dp">
+            android:elevation="4dp"
+            android:text="Места">
 
             <!-- Center the title using a TextView -->
             <TextView
