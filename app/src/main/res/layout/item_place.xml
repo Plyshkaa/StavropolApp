@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp"
-    android:background="@android:color/transparent"> <!-- Прозрачный фон -->
+    android:layout_margin="8dp"
+    android:background="@android:color/white"> <!-- Прозрачный фон -->
 
     <LinearLayout
         android:layout_width="match_parent"

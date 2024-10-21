@@ -1,12 +1,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/white">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:titleTextColor="@android:color/black"
+        android:elevation="4dp"
+        android:layout_alignParentTop="true">
+
+        <!-- Center the title using a TextView -->
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- WebView для загрузки афиши Яндекс -->
     <WebView
         android:id="@+id/afishaWebView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:visibility="gone" /> <!-- WebView по умолчанию скрыт -->
 
     <!-- Контейнер для кастомной картинки загрузки -->
@@ -14,6 +40,7 @@
         android:id="@+id/progress_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
         android:background="@android:color/white">
 
         <ImageView
@@ -25,4 +52,5 @@
             android:src="@drawable/ic_search_afisha" /> <!-- Укажите ваш drawable ресурс -->
 
     </FrameLayout>
+
 </RelativeLayout>

@@ -1,7 +1,12 @@
 package com.example.stavropolplacesapp.region
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stavropolplacesapp.R
@@ -18,6 +23,31 @@ class RegionDetailActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView_region)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Настройка тулбара
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // Убираем стандартное название приложения в Toolbar
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.black)) // Устанавливаем чёрный цвет
+        // Настраиваем кастомный заголовок
+        val toolbarTitle: TextView = findViewById(R.id.toolbar_title)
+        toolbarTitle.text = "Ставропольский край"  // Устанавливаем текст "Места" в тулбаре
+
+        // Обработчик для кнопки назад
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        // Прозрачный статус-бар с видимыми иконками
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.statusBarColor = Color.TRANSPARENT
+
+        // Используем светлый статус-бар для видимых иконок (черные иконки)
+        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+
 
         // Загрузка данных из JSON-файла
         val regionDetails = loadRegionDetailsFromJson("region.json")

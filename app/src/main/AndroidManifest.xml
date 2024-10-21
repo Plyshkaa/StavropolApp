@@ -27,7 +27,7 @@
         <activity
             android:name=".places.PlaceDetailActivity"
             android:exported="true"
-            android:label="Place Detail" />
+            />
 
         <activity android:name=".places.PlacesActivity" />
         <activity android:name=".famous_people.ZemlyakiActivity" />

@@ -11,7 +11,9 @@
         android:id="@+id/placeImageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/descriptionTextView"
