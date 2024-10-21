@@ -26,6 +26,7 @@
         android:id="@+id/places_to_eat_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="8dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar_places_to_eat"
         app:layout_constraintBottom_toBottomOf="parent" />
 

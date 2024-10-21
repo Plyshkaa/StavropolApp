@@ -10,8 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.graphics.Color
 import android.graphics.Paint
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.stavropolplacesapp.R
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -24,6 +27,31 @@ class PlaceDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_detail)
+
+        // В твоей Activity
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        // Убираем заголовок приложения в Toolbar
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.black)) // Устанавливаем чёрный цвет
+
+// Если используется кастомный TextView для заголовка
+        val toolbarTitle: TextView = findViewById(R.id.toolbar_title)
+        toolbarTitle.text = "Детали места"
+        // Прозрачный статус-бар с видимыми иконками
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.statusBarColor = Color.TRANSPARENT
+
+        // Используем светлый статус-бар для видимых иконок (черные иконки)
+        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+// Обработка нажатия на кнопку "Назад"
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+
+
+        }
 
         // Получаем координаты из интента
         val placeLatitude = intent.getDoubleExtra("latitude", 0.0)
@@ -60,7 +88,7 @@ class PlaceDetailActivity : AppCompatActivity() {
 
 
         // Привязка View
-        val placeImageView: ImageView = findViewById(R.id.placeImageView)
+        val placeImageView: ImageView = findViewById(R.id.place_image)
         val descriptionTextView: TextView = findViewById(R.id.descriptionTextView)
         val distanceTextView: TextView = findViewById(R.id.distanceTextView)
 
@@ -95,6 +123,7 @@ class PlaceDetailActivity : AppCompatActivity() {
             )
 
         }
+
     }
 
     private fun getCurrentLocationAndCalculateDistance(
