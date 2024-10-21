@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".MainActivity"
-    android:fitsSystemWindows="true">
+    android:background="@android:color/white">
 
     <!-- Фрейм для отображения фрагментов -->
     <FrameLayout
@@ -43,14 +42,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
                 android:text="Места которые стоит посетить"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:background="@android:color/transparent"
@@ -88,21 +88,19 @@
         android:id="@+id/card_view_region"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintTop_toBottomOf="@id/card_view_places"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/card_view_famous_people"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         android:clickable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="160dp">
 
             <ImageView
                 android:id="@+id/image_about_region"
@@ -122,8 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
+                android:textSize="16sp"
                 android:text="О регионе"
-                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:background="@android:color/transparent"
@@ -135,20 +133,19 @@
         android:id="@+id/card_view_famous_people"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintTop_toBottomOf="@id/card_view_places"
         app:layout_constraintStart_toEndOf="@id/card_view_region"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         android:clickable="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="160dp">
 
             <ImageView
                 android:id="@+id/image_famous_people"
@@ -170,7 +167,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="16dp"
                 android:text="Земляки"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:background="@android:color/transparent"
@@ -178,17 +175,15 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Карточка "Афиша", занимает 90% ширины с отступами -->
+    <!-- Карточка "Где поесть" -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view_afisha"
+        android:id="@+id/card_view_where_to_eat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/card_view_region"
+        app:layout_constraintTop_toBottomOf="@id/card_view_famous_people"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:cardCornerRadius="8dp"
@@ -198,7 +193,54 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="160dp">
+
+            <ImageView
+                android:id="@+id/where_to_eat_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_where_to_eat" />
+            <!-- Полупрозрачный черный фон для затемнения -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#33000000" /> <!-- Черный цвет с прозрачностью 20% -->
+
+            <TextView
+                android:id="@+id/main_description_where_to_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="16dp"
+                android:text="Где поесть"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:padding="8dp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Изменение размера блока "Афиша" -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_afisha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/card_view_where_to_eat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
 
             <!-- Изображение афиши -->
             <ImageView
@@ -219,16 +261,15 @@
                 android:id="@+id/afisha_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="16dp"
                 android:text="Афиша"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:gravity="center"
-                android:padding="8dp"
                 android:background="@android:color/transparent"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

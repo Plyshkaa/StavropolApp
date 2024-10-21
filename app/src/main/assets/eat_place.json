@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Сациви",
+    "description": "Ресторан «Сациви» предлагает своим гостям блюда грузинской кухни, приготовленные по традиционным рецептам.",
+    "coordinates": {
+      "latitude": 45.036517,
+      "longitude": 41.958213
+    },
+    "phone": "+7 (962) 445-84-58",
+    "address": "улица Ломоносова, 38",
+    "working_hours": {
+      "monday": "11:00 – 01:00",
+      "tuesday": "11:00 – 01:00",
+      "wednesday": "11:00 – 01:00",
+      "thursday": "11:00 – 01:00",
+      "friday": "11:00 – 01:00",
+      "saturday": "11:00 – 01:00",
+      "sunday": "11:00 – 01:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/1622057/2a00000167eeed1ef7e67ecafa1157f293e1/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1020917/2a00000167ec63641478eee20f0a22bafa8e/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1439437/2a00000167ec637b913cc8b7cbb5fddd50df/XXXL"
+    ]
+  },
+  {
+    "name": "Фьюжн",
+    "description": "Ресторан «Фьюжн» предлагает своим гостям разнообразное меню по типу шведского стола. Здесь можно попробовать блюда разных кухонь мира, такие как плов, люля-кебаб, пончики, компот и другие.",
+    "coordinates": {
+      "latitude": 45.044925,
+      "longitude": 41.970610
+    },
+    "phone": "+7 (962) 448-45-45",
+    "address": "ул. Дзержинского, 131А",
+    "working_hours": {
+      "monday": "10:00 - 20:00",
+      "tuesday": "10:00 - 20:00",
+      "wednesday": "10:00 - 20:00",
+      "thursday": "10:00 - 20:00",
+      "friday": "10:00 - 20:00",
+      "saturday": "10:00 - 20:00",
+      "sunday": "10:00 - 20:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/13917922/2a000001922de56de328950260ae1f341b81/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1032555/2a000001853e97788048138014215b23eef9/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/9776062/2a0000018dcfd14b97ff874d551981837b98/XXXL"
+    ]
+  },
+  {
+    "name": "Сад на крыше",
+    "description": "Ресторан «Фьюжн» предлагает своим гостям разнообразное меню по типу шведского стола. Здесь можно попробовать блюда разных кухонь мира, такие как плов, люля-кебаб, пончики, компот и другие.",
+    "coordinates": {
+      "latitude": 45.040658,
+      "longitude": 41.972090
+    },
+    "phone": "+7 (8652) 45-30-33",
+    "address": "ул. Ленина, 211А, Ставрополь • этаж 7",
+    "working_hours": {
+      "monday": "11:00 - 00:00",
+      "tuesday": "11:00 - 00:00",
+      "wednesday": "11:00 - 00:00",
+      "thursday": "11:00 - 00:00",
+      "friday": "11:00 - 00:00",
+      "saturday": "11:00 - 00:00",
+      "sunday": "11:00 - 00:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/11421964/2a0000018c8c97cec8d209d2ddca70c7501a/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/5480011/2a0000017daae05174382c8c315cd5ea3192/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/2389272/2a00000173e3379cbc9973d0c87cca6b1632/XXXL"
+    ]
+  }
+]
