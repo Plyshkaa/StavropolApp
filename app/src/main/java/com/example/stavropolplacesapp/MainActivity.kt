@@ -3,6 +3,7 @@ package com.example.stavropolplacesapp
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log // Добавляем импорт для логирования
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -11,12 +12,16 @@ import androidx.core.content.ContextCompat
 import android.Manifest
 import android.graphics.Color
 import android.view.View
-import android.widget.Button
+import androidx.fragment.app.Fragment
+import com.example.stavropolplacesapp.about.AboutScreen
+import com.example.stavropolplacesapp.about.SettingsFragment
 import com.example.stavropolplacesapp.afisha.AfishaActivity
 import com.example.stavropolplacesapp.eat.PlacesToEatActivity
 import com.example.stavropolplacesapp.famous_people.ZemlyakiActivity
 import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.places.PlacesFragment
 import com.example.stavropolplacesapp.region.RegionDetailActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,20 +32,52 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cardViewFamousPeople: CardView
     private lateinit var imageView: ImageView
 
+    private lateinit var navView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         checkLocationPermission()
 
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        // Устанавливаем фрагмент по умолчанию при запуске активности
+        if (savedInstanceState == null) {
+            replaceFragment(HomeFragment())
+        }
 
-// Устанавливаем цвет статус-бара как прозрачный
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+        // Обрабатываем нажатия на элементы навигации
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            Log.d("MainActivity", "Item clicked: ${item.title}")
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    replaceFragment(HomeFragment())
+                    true
+                }
+                R.id.nav_places -> {
+                    // Здесь открываем Activity для Мест вместо фрагмента
+                    val intent = Intent(this, PlacesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_about -> {
+                    // Здесь открываем Activity для экрана "О приложении" вместо фрагмента
+                    val intent = Intent(this, AboutScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
+
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
         window.statusBarColor = Color.TRANSPARENT
 
-// Чтобы сделать иконки и текст в статус-баре видимыми, используем флаг SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-
+        window.decorView.systemUiVisibility =
+            window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         // Initialize views
         cardViewPlaces = findViewById(R.id.card_view_places)
@@ -49,11 +86,13 @@ class MainActivity : AppCompatActivity() {
 
         // Set up navigation between activities
         cardViewPlaces.setOnClickListener {
+            Log.d("MainActivity", "Нажата карточка Места")
             val intent = Intent(this, PlacesActivity::class.java)
             startActivity(intent)
         }
 
         cardViewFamousPeople.setOnClickListener {
+            Log.d("MainActivity", "Нажата карточка Земляки")
             val intent = Intent(this, ZemlyakiActivity::class.java)
             startActivity(intent)
         }
@@ -61,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         // Card for Region
         val cardRegion = findViewById<CardView>(R.id.card_view_region)
         cardRegion.setOnClickListener {
+            Log.d("MainActivity", "Нажата карточка Регион")
             val intent = Intent(this, RegionDetailActivity::class.java)
             startActivity(intent)
         }
@@ -68,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         // Card for Afisha
         val afishaCardView: CardView = findViewById(R.id.card_view_afisha)
         afishaCardView.setOnClickListener {
+            Log.d("MainActivity", "Нажата карточка Афиша")
             val intent = Intent(this, AfishaActivity::class.java)
             startActivity(intent)
         }
@@ -75,11 +116,11 @@ class MainActivity : AppCompatActivity() {
         // В вашем MainActivity, при нажатии на элемент интерфейса
         val cardViewWhereToEat: CardView = findViewById(R.id.card_view_where_to_eat)
         cardViewWhereToEat.setOnClickListener {
+            Log.d("MainActivity", "Нажата карточка Где поесть")
             val intent = Intent(this, PlacesToEatActivity::class.java)
             startActivity(intent)
         }
     }
-
 
     private fun checkLocationPermission() {
         val preferences = getSharedPreferences("app_preferences", MODE_PRIVATE)
@@ -91,6 +132,7 @@ class MainActivity : AppCompatActivity() {
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
+                Log.d("MainActivity", "Запрос разрешения на доступ к местоположению")
 
                 // Запрос разрешения
                 ActivityCompat.requestPermissions(
@@ -109,11 +151,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun onPermissionGranted() {
+        Log.d("MainActivity", "Разрешение на доступ к местоположению получено")
         // Логика для работы с местоположением, если разрешение уже есть
-        // Например, обновление данных местоположения
     }
+
+    // Функция для замены фрагментов
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -123,10 +172,13 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Разрешение получено
+                Log.d(
+                    "MainActivity",
+                    "Пользователь предоставил разрешение на доступ к местоположению"
+                )
                 onPermissionGranted()
             } else {
-                // Обработка случая, если разрешение не было получено
+                Log.d("MainActivity", "Пользователь отклонил запрос на доступ к местоположению")
             }
         }
     }

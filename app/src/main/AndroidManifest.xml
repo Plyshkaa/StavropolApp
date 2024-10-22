@@ -6,12 +6,13 @@
 
     <application
         android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/logo_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.StavropolPlacesApp"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
 
         <activity
             android:name=".SplashScreenActivity"
@@ -30,6 +31,7 @@
             />
 
         <activity android:name=".places.PlacesActivity" />
+        <activity android:name=".about.AboutScreen" />
         <activity android:name=".famous_people.ZemlyakiActivity" />
         <activity
             android:name=".famous_people.PersonDetailActivity"
