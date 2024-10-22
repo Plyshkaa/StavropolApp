@@ -7,6 +7,7 @@ import com.example.stavropolplacesapp.R
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.example.stavropolplacesapp.MainActivity
@@ -43,15 +44,12 @@ class AboutScreen : AppCompatActivity() {
             }
         }
 
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_about)
+        val toolbar: Toolbar = findViewById(R.id.toolbar_about)
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "О приложении" // Устанавливаем заголовок
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(true) // Должно быть true для отображения заголовка
-
-
-        // Устанавливаем заголовок для тулбара
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.title = "О приложении"
+
 
         // Устанавливаем иконку назад и цвет
         toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
