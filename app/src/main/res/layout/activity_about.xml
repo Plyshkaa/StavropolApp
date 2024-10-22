@@ -3,39 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:enableOnBackInvokedCallback="true"
-    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@android:color/white"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
 
-    <!-- Toolbar -->
+    <!-- Тулбар -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_about"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
-        app:navigationIcon="@drawable/ic_arrow_back"
-        app:titleTextColor="@android:color/black" />
+        android:background="@android:color/white"
+        android:navigationIcon="@drawable/ic_arrow_back"
+        android:titleTextColor="@android:color/black" />
 
-    <!-- Содержимое экрана "О приложении" -->
+    <!-- Разделитель под тулбаром -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp" />
+
+    <!-- Описание приложения -->
     <TextView
-        android:id="@+id/toolbar_title_about"
+        android:id="@+id/description_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingTop="16dp"
+        android:layout_marginTop="16dp"
         android:text="Это приложение для отображения мест и событий в Ставрополе."
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
+    <!-- Разделитель между блоками -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp" />
+
+    <!-- Версия приложения -->
     <TextView
+        android:id="@+id/version_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Версия 1.0.0"
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 
+    <!-- Фрейм для фрагментов -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Панель навигации -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/nav_item_color_state"
+        app:itemTextColor="@color/nav_item_color_state"
+        app:labelVisibilityMode="labeled"
+        android:background="@android:color/white" />
 </LinearLayout>

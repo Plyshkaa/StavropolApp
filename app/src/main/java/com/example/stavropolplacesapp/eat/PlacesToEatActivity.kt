@@ -2,6 +2,7 @@ package com.example.stavropolplacesapp.eat
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
@@ -16,10 +17,14 @@ import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat.getCurrentLocation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
+import com.example.stavropolplacesapp.about.AboutScreen
+import com.example.stavropolplacesapp.places.PlacesActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,6 +44,33 @@ class PlacesToEatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_places_to_eat)
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+        // Устанавливаем обработчик для навигации
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Открываем экран "Главная"
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_places -> {
+                    // Открываем экран "Места"
+                    val intent = Intent(this, PlacesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_about -> {
+                    // Открываем экран "О приложении"
+                    val intent = Intent(this, AboutScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Инициализируем RecyclerView
         placesRecyclerView = findViewById(R.id.places_to_eat_recycler_view)
