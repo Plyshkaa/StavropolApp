@@ -2,6 +2,7 @@ package com.example.stavropolplacesapp.about
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import com.example.stavropolplacesapp.R
 
@@ -70,5 +71,22 @@ class AboutScreen : AppCompatActivity() {
         // Используем светлый статус-бар для видимых иконок (черные иконки)
         window.decorView.systemUiVisibility =
             window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
+    // Открыть YouTube
+    fun openYouTube(view: View) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/playlist?list=PLH9qVe356CO-WJ0FsLoA8GsjkQXqhC8_o"))
+        startActivity(intent)
+    }
+
+    // Открыть ВКонтакте
+    fun openVK(view: View) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.com/stav_region"))
+        startActivity(intent)
+    }
+
+    // Открыть Telegram
+    fun openTelegram(view: View) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/s/stavropolye_tv"))
+        startActivity(intent)
     }
 }

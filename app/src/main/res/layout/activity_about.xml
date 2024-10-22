@@ -147,6 +147,115 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Разделитель перед социальными ссылками -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/licenses" />
+
+    <!-- Социальные ссылки -->
+    <TextView
+        android:id="@+id/social_media_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Следи за новостями"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/licenses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Контейнер для иконок социальных сетей -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/social_media_header">
+
+        <!-- YouTube -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/youtube_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/youtube"
+                android:contentDescription="YouTube"
+                android:clickable="true"
+                android:onClick="openYouTube" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="YouTube"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- ВКонтакте -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
+
+            <ImageView
+                android:id="@+id/vk_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/vk"
+                android:contentDescription="ВКонтакте"
+                android:clickable="true"
+                android:onClick="openVK" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="ВКонтакте"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Telegram -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/telegram_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/telegram"
+                android:contentDescription="Telegram"
+                android:clickable="true"
+                android:onClick="openTelegram" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Telegram"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <!-- Панель навигации внизу -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation_view"
