@@ -1,6 +1,7 @@
 package com.example.stavropolplacesapp.eat
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
@@ -16,7 +17,11 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
+import com.example.stavropolplacesapp.about.AboutScreen
+import com.example.stavropolplacesapp.places.PlacesActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
@@ -38,7 +43,32 @@ class PlacesToEatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_places_to_eat)
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
 
+        // Устанавливаем обработчик для навигации
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Открываем экран "Главная"
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_places -> {
+                    // Открываем экран "Места"
+                    val intent = Intent(this, PlacesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_about -> {
+                    // Открываем экран "О приложении"
+                    val intent = Intent(this, AboutScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Инициализация клиента для получения местоположения
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -179,7 +209,6 @@ class PlacesToEatActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     // Разрешение на фоновый доступ отклонено, возможно, нужно предупредить пользователя
                     Log.d(TAG, "Разрешение на фоновый доступ отклонено")
-                    Toast.makeText(this, "Для корректной работы необходимо разрешение на фоновый доступ к местоположению", Toast.LENGTH_LONG).show()
                 }
             }
         }
