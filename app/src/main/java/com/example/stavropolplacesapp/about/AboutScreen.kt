@@ -74,7 +74,7 @@ class AboutScreen : AppCompatActivity() {
     }
     // Открыть YouTube
     fun openYouTube(view: View) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/playlist?list=PLH9qVe356CO-WJ0FsLoA8GsjkQXqhC8_o"))
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://rutube.ru/u/svoe/"))
         startActivity(intent)
     }
 

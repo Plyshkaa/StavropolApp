@@ -189,8 +189,8 @@
                 android:id="@+id/youtube_icon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/youtube"
-                android:contentDescription="YouTube"
+                android:src="@drawable/rutube"
+                android:contentDescription="RuTube"
                 android:clickable="true"
                 android:onClick="openYouTube" />
 
