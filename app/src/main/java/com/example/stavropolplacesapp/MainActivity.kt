@@ -13,6 +13,8 @@ import android.Manifest
 import android.graphics.Color
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.stavropolplacesapp.HomeFragment
+import com.example.stavropolplacesapp.R
 import com.example.stavropolplacesapp.about.AboutScreen
 import com.example.stavropolplacesapp.about.SettingsFragment
 import com.example.stavropolplacesapp.afisha.AfishaActivity
