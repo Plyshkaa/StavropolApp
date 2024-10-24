@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/full_schedule_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Режим работы"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/monday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Понедельник: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/tuesday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вторник: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/wednesday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Среда: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/thursday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Четверг: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/friday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пятница: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/saturday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Суббота: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/sunday_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Воскресенье: 00:00 - 00:00"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

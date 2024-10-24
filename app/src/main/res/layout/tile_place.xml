@@ -16,7 +16,7 @@
         android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/place_name"
+            android:id="@+id/place_name_to_eat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"

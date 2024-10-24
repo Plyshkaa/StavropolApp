@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.stavropolplacesapp.R
-import com.example.stavropolplacesapp.eat.PlaceDetailActivity
+import com.example.stavropolplacesapp.places.PlaceDetailActivity
+import com.google.gson.Gson
 
 class PlacesToEatAdapter(
     private val places: List<PlaceToEat>,
@@ -27,17 +28,26 @@ class PlacesToEatAdapter(
         val place = places[position]
         holder.bind(place)
 
-        // Обработка клика на карточке заведения
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, PlaceDetailActivity::class.java)
+            val intent = Intent(holder.itemView.context, PlaceEatDetailActivity::class.java)
             intent.putExtra("placeName", place.name)
             intent.putExtra("placeDescription", place.description)
             intent.putExtra("placeAddress", place.address)
             intent.putExtra("placePhone", place.phone)
-            intent.putExtra("placePhotos", place.photos.toTypedArray())  // Передаем список фото
+            intent.putExtra("placePhotos", place.photos.toTypedArray())
+            intent.putExtra("placeCoordinates", "${place.coordinates.latitude}, ${place.coordinates.longitude}")
+
+            // Преобразуем объект WorkingDays в строку JSON
+            val workingHoursJson = Gson().toJson(place.working_hours)  // изменил на working_hours
+            intent.putExtra("placeWorkingHours", workingHoursJson)
+
             holder.itemView.context.startActivity(intent)
+            // Проверяем, что placePhotos не null
+            val photosArray = place.photos?.toTypedArray() ?: emptyArray()
+            intent.putExtra("placePhotos", photosArray)
         }
     }
+
 
     override fun getItemCount(): Int {
         return places.size
