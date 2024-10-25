@@ -2,7 +2,9 @@ package com.example.stavropolplacesapp.eat
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -36,18 +38,21 @@ class PlaceEatDetailActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+
                 R.id.nav_places -> {
                     // Открываем экран "Места"
                     val intent = Intent(this, PlacesActivity::class.java)
                     startActivity(intent)
                     true
                 }
+
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
                     val intent = Intent(this, AboutScreen::class.java)
                     startActivity(intent)
                     true
                 }
+
                 else -> false
             }
         }
@@ -67,9 +72,11 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         }
 
         // Прозрачный статус-бар
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
-        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility =
+            window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         // Инициализация виджетов
         val placeHoursTextView: TextView = findViewById(R.id.place_hours)
@@ -89,6 +96,9 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         val fullScheduleClickListener = View.OnClickListener {
             if (placeWorkingHours != null) {
                 showFullSchedule(placeWorkingHours)
+            } else {
+                Log.d("PlaceEatDetailActivity", "Place working hours: $placeWorkingHours")
+
             }
         }
 
@@ -105,10 +115,12 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         placeNameTextView.text = placeName
         placeDescriptionTextView.text = placeDescription
         placeAddressTextView.text = placeAddress
-        placeCoordinatesTextView.text = "Координаты: $placeCoordinates"
-        placePhoneTextView.text = "Телефон: $placePhone"
+        placeCoordinatesTextView.text = "$placeCoordinates"
+        placePhoneTextView.text = "$placePhone"
+        // Делаем текст синим и подчеркиваем его как гиперссылку
+        placeCoordinatesTextView.setTextColor(Color.BLUE)
+        placePhoneTextView.setTextColor(Color.BLUE)
 
-        // Получаем текущий день недели
         val calendar = Calendar.getInstance()
         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
 
@@ -132,6 +144,14 @@ class PlaceEatDetailActivity : AppCompatActivity() {
             val adapter = PhotoPagerAdapter(placePhotos)
             viewPager.adapter = adapter
         }
+
+
+        // Сделать координаты кликабельными и открыть карту
+        placeCoordinatesTextView.setOnClickListener {
+            val geoUri = "geo:${placeCoordinates}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
+            startActivity(intent)
+        }
     }
 
     // Функция для отображения BottomSheetDialog
@@ -149,15 +169,16 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         val saturdayTextView: TextView = view.findViewById(R.id.saturday_hours)
         val sundayTextView: TextView = view.findViewById(R.id.sunday_hours)
 
-        // Устанавливаем данные
-        mondayTextView.text = "Понедельник: ${placeWorkingHours.monday}"
-        tuesdayTextView.text = "Вторник: ${placeWorkingHours.tuesday}"
-        wednesdayTextView.text = "Среда: ${placeWorkingHours.wednesday}"
-        thursdayTextView.text = "Четверг: ${placeWorkingHours.thursday}"
-        fridayTextView.text = "Пятница: ${placeWorkingHours.friday}"
-        saturdayTextView.text = "Суббота: ${placeWorkingHours.saturday}"
-        sundayTextView.text = "Воскресенье: ${placeWorkingHours.sunday}"
+        mondayTextView.text = placeWorkingHours.monday
+        tuesdayTextView.text = placeWorkingHours.tuesday
+        wednesdayTextView.text = placeWorkingHours.wednesday
+        thursdayTextView.text = placeWorkingHours.thursday
+        fridayTextView.text = placeWorkingHours.friday
+        saturdayTextView.text = placeWorkingHours.saturday
+        sundayTextView.text = placeWorkingHours.sunday
 
+
+        bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
     }
 }
