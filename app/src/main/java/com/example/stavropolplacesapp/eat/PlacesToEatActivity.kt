@@ -44,6 +44,8 @@ class PlacesToEatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_places_to_eat)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        // Сбрасываем подсветку всех иконок
+        bottomNavigationView.menu.setGroupCheckable(0, false, true)
 
         // Устанавливаем обработчик для навигации
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->

@@ -28,6 +28,11 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_eat_place_detail)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        // Сбрасываем подсветку всех иконок
+        bottomNavigationView.menu.setGroupCheckable(0, false, true)
+
+
+
 
         // Устанавливаем обработчик для навигации
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -38,21 +43,18 @@ class PlaceEatDetailActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-
                 R.id.nav_places -> {
                     // Открываем экран "Места"
                     val intent = Intent(this, PlacesActivity::class.java)
                     startActivity(intent)
                     true
                 }
-
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
                     val intent = Intent(this, AboutScreen::class.java)
                     startActivity(intent)
                     true
                 }
-
                 else -> false
             }
         }
