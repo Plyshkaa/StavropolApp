@@ -86,6 +86,7 @@ class PlacesToEatActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar_places_to_eat)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Где поесть"
+
         // Добавляем кнопку назад
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
