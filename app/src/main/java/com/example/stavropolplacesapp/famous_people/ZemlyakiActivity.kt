@@ -13,6 +13,10 @@ import org.json.JSONObject
 import java.io.IOException
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.example.stavropolplacesapp.MainActivity
+import com.example.stavropolplacesapp.about.AboutScreen
+import com.example.stavropolplacesapp.places.PlacesActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class ZemlyakiActivity : AppCompatActivity() {
@@ -24,42 +28,65 @@ class ZemlyakiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zemlyaki)
 
-// Инициализация Toolbar
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+        // Устанавливаем обработчик для навигации
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Открываем экран "Главная"
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_places -> {
+                    // Открываем экран "Места"
+                    val intent = Intent(this, PlacesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_about -> {
+                    // Открываем экран "О приложении"
+                    val intent = Intent(this, AboutScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        // Инициализация Toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-
         // Добавляем кнопку назад
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
-        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.black)) // Устанавливаем чёрный цвет
-
-        // Устанавливаем заголовок в центр
-        supportActionBar?.title = ""
+        toolbar.navigationIcon?.setTint(
+            ContextCompat.getColor(
+                this,
+                R.color.black
+            )
+        ) // Устанавливаем чёрный цвет
         val titleTextView: TextView = findViewById(R.id.toolbar_title)
         titleTextView.text = "Земляки"
-
         // Добавляем действие при нажатии на кнопку возврата
         toolbar.setNavigationOnClickListener {
             onBackPressed() // Возврат на предыдущий экран
         }
-
-
-
-
         // Прозрачный статус-бар с видимыми иконками
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
 
         // Используем светлый статус-бар для видимых иконок (черные иконки)
-        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility =
+            window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
 
 
         recyclerView = findViewById(R.id.recyclerView_zemlyaki)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
 
 
         val people = getPeopleFromFile() // Получаем людей из JSON-файла
@@ -115,7 +142,13 @@ class ZemlyakiActivity : AppCompatActivity() {
             val name = jsonObjectPerson.getString("name")
             val imageUrl = jsonObjectPerson.getString("imageUrl")
             val description = jsonObjectPerson.getString("description") // Извлекаем описание
-            peopleList.add(FamousPeoplePerson(name, imageUrl, description)) // Добавляем описание в Person
+            peopleList.add(
+                FamousPeoplePerson(
+                    name,
+                    imageUrl,
+                    description
+                )
+            ) // Добавляем описание в Person
         }
         return peopleList
     }

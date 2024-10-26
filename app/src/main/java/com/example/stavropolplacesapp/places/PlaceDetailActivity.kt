@@ -16,9 +16,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
+import com.example.stavropolplacesapp.about.AboutScreen
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PlaceDetailActivity : AppCompatActivity() {
 
@@ -27,6 +30,33 @@ class PlaceDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_place_detail)
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+
+        // Устанавливаем обработчик для навигации
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    // Открываем экран "Главная"
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_places -> {
+                    // Открываем экран "Места"
+                    val intent = Intent(this, PlacesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.nav_about -> {
+                    // Открываем экран "О приложении"
+                    val intent = Intent(this, AboutScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         // В твоей Activity
         val toolbar: Toolbar = findViewById(R.id.toolbar)

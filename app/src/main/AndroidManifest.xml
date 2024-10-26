@@ -3,15 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
 
     <application
         android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/logo_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_app"
         android:supportsRtl="true"
         android:theme="@style/Theme.StavropolPlacesApp"
-        tools:targetApi="31">
+        tools:targetApi="tiramisu">
 
         <activity
             android:name=".SplashScreenActivity"
@@ -30,15 +34,18 @@
             />
 
         <activity android:name=".places.PlacesActivity" />
+        <activity android:name=".about.AboutScreen" />
         <activity android:name=".famous_people.ZemlyakiActivity" />
         <activity
             android:name=".famous_people.PersonDetailActivity"
-            android:theme="@style/AppTheme.TransparentStatusBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             /> <!-- Добавляем PersonDetailActivity -->
         <activity android:name=".region.RegionDetailActivity" />
         <activity android:name=".afisha.AfishaActivity" />
 
         <activity android:name=".eat.PlacesToEatActivity"/>
+        <activity android:name=".eat.PlaceEatDetailActivity" />
+
 
         <activity
             android:name=".MainActivity"

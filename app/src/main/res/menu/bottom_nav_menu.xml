@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/ic_home"
         android:title="Главная" />
     <item
-        android:id="@+id/navigation_places"
+        android:id="@+id/nav_places"
         android:icon="@drawable/ic_places"
         android:title="Места" />
     <item
-        android:id="@+id/navigation_region"
-        android:icon="@drawable/ic_places"
-        android:title="Места" />
+        android:id="@+id/nav_about"
+        android:icon="@drawable/about"
+        android:title="О приложении" />
 </menu>

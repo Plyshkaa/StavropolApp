@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:fitsSystemWindows="true"> <!-- Adjust for system windows -->
+
+    android:fitsSystemWindows="true">
 
     <!-- AppBarLayout for proper toolbar behavior -->
     <com.google.android.material.appbar.AppBarLayout
@@ -17,12 +18,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            android:text="Места"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:titleTextColor="@android:color/black"
+            android:background="@android:color/white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:elevation="4dp">
+            android:elevation="4dp"
+            android:text="Места">
 
             <!-- Center the title using a TextView -->
             <TextView
@@ -32,17 +33,40 @@
                 android:layout_gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textColor="@android:color/black" />
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- RecyclerView for listing places -->
+    <!-- Контейнер для контента экрана (например, фрагменты) -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="80dp"
+         /> <!-- Добавляем отступ для BottomNavigationView -->
+
+    <!-- Панель навигации -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/nav_item_color_state"
+        app:itemTextColor="@color/nav_item_color_state"
+        app:labelVisibilityMode="labeled"
+        android:background="@android:color/white" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/places_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:padding="8dp"/>
+        android:layout_marginBottom="80dp"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
