@@ -35,20 +35,20 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
+
                 R.id.nav_places -> {
-                    val intent = Intent(this, PlacesActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, PlacesActivity::class.java))
                     true
                 }
+
                 R.id.nav_about -> {
-                    val intent = Intent(this, AboutScreen::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, AboutScreen::class.java))
                     true
                 }
+
                 else -> false
             }
         }
@@ -58,12 +58,12 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         val placeDescription = intent.getStringExtra("placeDescription")
         val placeAddress = intent.getStringExtra("placeAddress")
         val placePhone = intent.getStringExtra("placePhone")
-        val placePhotos = intent.getStringArrayExtra("placePhotos")
+        val placePhotos = intent.getStringArrayExtra("placePhotos") ?: arrayOf()
         val placeCoordinates = intent.getStringExtra("placeCoordinates")
         val placeWorkingHoursJson = intent.getStringExtra("placeWorkingHours")
         val placeWorkingHours = Gson().fromJson(placeWorkingHoursJson, WorkingDays::class.java)
 
-        // Настраиваем Toolbar и устанавливаем название заведения как заголовок
+// Настраиваем Toolbar и устанавливаем название заведения как заголовок
         val toolbar: Toolbar = findViewById(R.id.toolbar_places_to_eat_detail)
         // Устанавливаем заголовок в кастомный TextView
         val toolbarTitle: TextView = findViewById(R.id.toolbar_title)
@@ -80,18 +80,25 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         // Настройка ViewPager2 и TabLayout
         val viewPager: ViewPager2 = findViewById(R.id.photo_view_pager)
         val tabLayout: TabLayout = findViewById(R.id.photo_indicator)
-        val photoUrls = placePhotos ?: arrayOf() // Используем placePhotos вместо получения из intent снова
-        viewPager.adapter = PhotoPagerAdapter(this, photoUrls)
+        viewPager.adapter = PhotoPagerAdapter(this, placePhotos)
 
         // Подключение TabLayoutMediator для отображения индикатора
-        TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            if (position == viewPager.currentItem) {
+                tab.setCustomView(R.layout.tab_indicator_selected)
+            } else {
+                tab.setCustomView(R.layout.tab_indicator_unselected)
+            }
+        }.attach()
 
         // Прозрачный статус-бар
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
-        window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.decorView.systemUiVisibility =
+            window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-        // Остальная инициализация виджетов
+        // Инициализация виджетов
         val placeDescriptionTextView: TextView = findViewById(R.id.place_description)
         val placeAddressTextView: TextView = findViewById(R.id.place_address)
         val placeCoordinatesTextView: TextView = findViewById(R.id.place_coordinates)
@@ -109,34 +116,47 @@ class PlaceEatDetailActivity : AppCompatActivity() {
             if (placeWorkingHours != null) {
                 showFullSchedule(placeWorkingHours)
             } else {
-                Log.d("PlaceEatDetailActivity", "Place working hours: $placeWorkingHours")
+                Log.d("PlaceEatDetailActivity", "Расписание работы отсутствует")
             }
         }
-
         placeHoursTextView.setOnClickListener(fullScheduleClickListener)
         expandIcon.setOnClickListener(fullScheduleClickListener)
 
-        // Получаем текущий день недели для отображения рабочего времени
+        // Отображение рабочего времени на текущий день
         val calendar = Calendar.getInstance()
         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
         val workingHours = when (dayOfWeek) {
-            Calendar.MONDAY -> "Сегодня: ${placeWorkingHours?.monday}"
-            Calendar.TUESDAY -> "Сегодня: ${placeWorkingHours?.tuesday}"
-            Calendar.WEDNESDAY -> "Сегодня: ${placeWorkingHours?.wednesday}"
-            Calendar.THURSDAY -> "Сегодня: ${placeWorkingHours?.thursday}"
-            Calendar.FRIDAY -> "Сегодня: ${placeWorkingHours?.friday}"
-            Calendar.SATURDAY -> "Сегодня: ${placeWorkingHours?.saturday}"
-            Calendar.SUNDAY -> "Сегодня: ${placeWorkingHours?.sunday}"
+            Calendar.MONDAY -> "Сегодня: ${placeWorkingHours?.monday ?: "Не указано"}"
+            Calendar.TUESDAY -> "Сегодня: ${placeWorkingHours?.tuesday ?: "Не указано"}"
+            Calendar.WEDNESDAY -> "Сегодня: ${placeWorkingHours?.wednesday ?: "Не указано"}"
+            Calendar.THURSDAY -> "Сегодня: ${placeWorkingHours?.thursday ?: "Не указано"}"
+            Calendar.FRIDAY -> "Сегодня: ${placeWorkingHours?.friday ?: "Не указано"}"
+            Calendar.SATURDAY -> "Сегодня: ${placeWorkingHours?.saturday ?: "Не указано"}"
+            Calendar.SUNDAY -> "Сегодня: ${placeWorkingHours?.sunday ?: "Не указано"}"
             else -> "Часы работы не указаны"
         }
         placeHoursTextView.text = workingHours
 
         // Клик по координатам для открытия в карте
         placeCoordinatesTextView.setOnClickListener {
-            val geoUri = "geo:${placeCoordinates}"
+            val geoUri = "geo:$placeCoordinates"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
             startActivity(intent)
         }
+
+        // Изменение иконки при смене страницы
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                for (i in 0 until tabLayout.tabCount) {
+                    val tab = tabLayout.getTabAt(i)
+                    if (i == position) {
+                        tab?.setCustomView(R.layout.tab_indicator_selected)
+                    } else {
+                        tab?.setCustomView(R.layout.tab_indicator_unselected)
+                    }
+                }
+            }
+        })
     }
 
     // Функция для отображения BottomSheetDialog с полным расписанием
