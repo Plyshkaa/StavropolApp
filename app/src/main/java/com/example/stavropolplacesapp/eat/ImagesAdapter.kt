@@ -20,6 +20,7 @@ class ImagesAdapter(private val images: List<String>) : RecyclerView.Adapter<Ima
         // Загрузка изображения с помощью Glide
         Glide.with(holder.itemView.context)
             .load(images[position])
+            .fitCenter()
             .into(holder.imageView)
     }
 

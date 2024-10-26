@@ -45,6 +45,8 @@
 
         <activity android:name=".eat.PlacesToEatActivity"/>
         <activity android:name=".eat.PlaceEatDetailActivity" />
+        <activity android:name=".eat.FullScreenImageActivity" />
+
 
 
         <activity

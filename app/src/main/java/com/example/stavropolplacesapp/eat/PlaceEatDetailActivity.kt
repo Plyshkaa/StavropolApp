@@ -18,6 +18,8 @@ import com.example.stavropolplacesapp.about.AboutScreen
 import com.example.stavropolplacesapp.places.PlacesActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import java.util.Calendar
 
@@ -75,6 +77,15 @@ class PlaceEatDetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        // Настройка ViewPager2 и TabLayout
+        val viewPager: ViewPager2 = findViewById(R.id.photo_view_pager)
+        val tabLayout: TabLayout = findViewById(R.id.photo_indicator)
+        val photoUrls = placePhotos ?: arrayOf() // Используем placePhotos вместо получения из intent снова
+        viewPager.adapter = PhotoPagerAdapter(this, photoUrls)
+
+        // Подключение TabLayoutMediator для отображения индикатора
+        TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
+
         // Прозрачный статус-бар
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT
@@ -119,13 +130,6 @@ class PlaceEatDetailActivity : AppCompatActivity() {
             else -> "Часы работы не указаны"
         }
         placeHoursTextView.text = workingHours
-
-        // Настройка ViewPager для фото
-        val viewPager: ViewPager2 = findViewById(R.id.photo_view_pager)
-        if (placePhotos != null && placePhotos.isNotEmpty()) {
-            val adapter = PhotoPagerAdapter(placePhotos)
-            viewPager.adapter = adapter
-        }
 
         // Клик по координатам для открытия в карте
         placeCoordinatesTextView.setOnClickListener {

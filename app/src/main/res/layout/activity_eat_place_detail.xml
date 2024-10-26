@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
-    <!-- Toolbar -->
+    <!-- Toolbar с центральным заголовком -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_places_to_eat_detail"
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
         android:background="@android:color/white"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:titleTextColor="@android:color/black"
-        style="@style/CenteredToolbar"
         android:fitsSystemWindows="true"
         android:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -31,30 +30,30 @@
             android:textSize="20sp"
             android:textColor="@android:color/black"
             android:textStyle="bold"/>
-
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Контейнер для контента экрана -->
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <!-- ViewPager2 для фото с индикатором TabLayout -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/photo_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="250dp"
         app:layout_constraintTop_toBottomOf="@id/toolbar_places_to_eat_detail"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
-        android:layout_width="match_parent"
+    <!-- TabLayout для отображения индикатора страницы под фото -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/photo_indicator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconSize="24dp"
-        android:background="@android:color/white"
-        app:itemIconTint="@color/gray"
-        app:itemTextColor="@color/gray"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        app:tabIndicatorColor="@color/blue"
+        android:background="@color/white"
+        app:tabBackground="@drawable/custom_tab_indicator"
+        app:tabRippleColor="@null"
+        app:tabIconTint="@color/gray"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/photo_view_pager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -62,7 +61,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_places_to_eat_detail"
+        app:layout_constraintTop_toBottomOf="@id/photo_indicator"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -73,13 +72,6 @@
             android:orientation="vertical"
             android:gravity="center_vertical"
             android:padding="16dp">
-
-            <!-- ViewPager для фото -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/photo_view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginBottom="16dp" />
 
             <!-- Описание заведения -->
             <TextView
@@ -211,5 +203,19 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="24dp"
+        android:background="@android:color/white"
+        app:itemIconTint="@color/gray"
+        app:itemTextColor="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
