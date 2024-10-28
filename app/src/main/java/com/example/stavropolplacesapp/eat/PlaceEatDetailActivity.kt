@@ -1,5 +1,8 @@
 package com.example.stavropolplacesapp.eat
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -8,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -106,6 +110,16 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         val placeHoursTextView: TextView = findViewById(R.id.place_hours)
         val expandIcon: ImageView = findViewById(R.id.expand_icon)
 
+        // Копирование адреса в буфер обмена при клике
+        placeAddressTextView.setOnClickListener {
+            copyTextToClipboard(placeAddressTextView.text.toString(), "Адрес скопирован в буфер обмена")
+        }
+
+        // Открытие телефона для звонка при клике
+        placePhoneTextView.setOnClickListener {
+            openDialerWithNumber(placePhoneTextView.text.toString())
+        }
+
         placeDescriptionTextView.text = placeDescription
         placeAddressTextView.text = placeAddress
         placeCoordinatesTextView.text = placeCoordinates
@@ -157,6 +171,8 @@ class PlaceEatDetailActivity : AppCompatActivity() {
                 }
             }
         })
+
+
     }
 
     // Функция для отображения BottomSheetDialog с полным расписанием
@@ -182,5 +198,19 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         sundayTextView.text = placeWorkingHours.sunday
 
         bottomSheetDialog.show()
+    }
+    // Функция для копирования текста в буфер обмена
+    private fun copyTextToClipboard(text: String, toastMessage: String) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Copied Address", text)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    // Функция для открытия номера в приложении для звонков
+    private fun openDialerWithNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$phoneNumber")
+        startActivity(intent)
     }
 }
