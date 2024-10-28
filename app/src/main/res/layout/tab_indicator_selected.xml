@@ -1,7 +1,8 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="2dp"
-    android:layout_height="2dp"
-    android:background="@color/blue"
+    android:layout_width="4dp"
+    android:layout_height="4dp"
+    android:background="@color/gray"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="2dp"
+    android:layout_marginHorizontal="3dp"
     android:contentDescription="@null" />
+

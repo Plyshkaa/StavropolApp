@@ -16,15 +16,18 @@ class PhotoPagerAdapter(
 ) : RecyclerView.Adapter<PhotoPagerAdapter.PhotoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo_pager, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_photo_pager, parent, false)
         return PhotoViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photoUrl = photoUrls[position]
-        Glide.with(holder.itemView.context).load(photoUrl).into(holder.photoImageView)
+        Glide.with(holder.itemView.context)
+            .load(photoUrl)
+            .fitCenter()
+            .into(holder.photoImageView)
 
-        // Добавляем обработчик клика для открытия полноэкранного просмотра
         holder.photoImageView.setOnClickListener {
             val intent = Intent(context, FullScreenImageActivity::class.java).apply {
                 putExtra("photos", photoUrls)
