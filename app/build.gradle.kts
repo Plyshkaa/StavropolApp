@@ -74,6 +74,8 @@ dependencies {
     implementation("androidx.gridlayout:gridlayout:1.0.0")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("com.google.android.material:material:1.7.0")
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.23")
+
 
 
 
