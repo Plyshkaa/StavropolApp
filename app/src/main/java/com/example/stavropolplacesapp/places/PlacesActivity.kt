@@ -33,27 +33,33 @@ class PlacesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_places_list)
 
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        bottomNavigationView.selectedItemId = R.id.nav_places
+
 
         // Устанавливаем обработчик для навигации
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     // Открываем экран "Главная"
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                     true
                 }
                 R.id.nav_places -> {
                     // Открываем экран "Места"
                     val intent = Intent(this, PlacesActivity::class.java)
                     startActivity(intent)
+                    finish()
                     true
                 }
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
                     val intent = Intent(this, AboutScreen::class.java)
                     startActivity(intent)
+                    finish()
                     true
                 }
                 else -> false

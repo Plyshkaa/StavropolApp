@@ -9,6 +9,7 @@ import com.example.stavropolplacesapp.R
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.example.stavropolplacesapp.MainActivity
@@ -21,20 +22,30 @@ class AboutScreen : AppCompatActivity() {
         setContentView(R.layout.activity_about)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        bottomNavigationView.selectedItemId = R.id.nav_about
+
+        // Находим TextView для email
+        val emailTextView: TextView = findViewById(R.id.contact_info)
+        // Обработка нажатия на email
+        emailTextView.setOnClickListener {
+            openEmailClient(emailTextView.text.toString())
+        }
 
         // Устанавливаем обработчик для навигации
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     // Открываем экран "Главная"
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                     true
                 }
                 R.id.nav_places -> {
                     // Открываем экран "Места"
                     val intent = Intent(this, PlacesActivity::class.java)
                     startActivity(intent)
+                    finish()
                     true
                 }
                 R.id.nav_about -> {
@@ -71,6 +82,18 @@ class AboutScreen : AppCompatActivity() {
         // Используем светлый статус-бар для видимых иконок (черные иконки)
         window.decorView.systemUiVisibility =
             window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    }
+    private fun openEmailClient(email: String) {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "message/rfc822"
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+        }
+
+        try {
+            startActivity(Intent.createChooser(intent, "Выберите почтовое приложение"))
+        } catch (ex: android.content.ActivityNotFoundException) {
+            Toast.makeText(this, "Нет установленных почтовых приложений", Toast.LENGTH_SHORT).show()
+        }
     }
     // Открыть YouTube
     fun openYouTube(view: View) {

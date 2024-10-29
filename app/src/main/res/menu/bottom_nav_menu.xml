@@ -11,4 +11,9 @@
         android:id="@+id/nav_about"
         android:icon="@drawable/about"
         android:title="О приложении" />
+    <item
+        android:id="@+id/nav_none"
+        android:title="None"
+        android:visible="false" />
+
 </menu>

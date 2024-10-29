@@ -26,11 +26,14 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="О приложении"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Логотип приложения -->
@@ -63,7 +66,7 @@
         android:id="@+id/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Версия 1.0.0"
+        android:text="Версия 1.0.5"
         android:textColor="@android:color/darker_gray"
         android:textSize="14sp"
         android:layout_marginTop="4dp"
@@ -79,13 +82,15 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Это приложение для отображения мест и событий в Ставрополе."
+        android:text="Ставротека — твой гид по Ставропольскому краю!
+Ставротека — это удобное и полезное приложение для жителей и гостей Ставропольского края"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/app_version"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 
     <!-- Разделитель -->
     <View
@@ -101,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Разработчики: Илья Черняев"
+        android:text="Разработчик: Илья Черняев"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/description_text"
@@ -114,37 +119,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Контакты: Ilya.cherhyaev31@yandex.ru"
-        android:textColor="@android:color/black"
+        android:text="Ilya.cherhyaev31@yandex.ru"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/developer_info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Ссылки на политику конфиденциальности и лицензии -->
-    <TextView
-        android:id="@+id/privacy_policy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Политика конфиденциальности"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="16sp"
-        android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@id/contact_info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/licenses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Лицензии"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="16sp"
-        android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@id/privacy_policy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -154,7 +132,7 @@
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/licenses" />
+        app:layout_constraintTop_toBottomOf="@id/contact_info"/>
 
     <!-- Социальные ссылки -->
     <TextView
@@ -165,7 +143,7 @@
         android:text="Следи за новостями"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/licenses"
+        app:layout_constraintTop_toBottomOf="@id/contact_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -176,7 +154,9 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/social_media_header">
+        app:layout_constraintTop_toBottomOf="@id/social_media_header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <!-- YouTube -->
         <LinearLayout
@@ -190,7 +170,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:src="@drawable/rutube"
-                android:contentDescription="RuTube"
+                android:contentDescription="YouTube"
                 android:clickable="true"
                 android:onClick="openYouTube" />
 
@@ -263,6 +243,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="24dp"
         android:background="@android:color/white"
         app:itemIconTint="@color/nav_item_color_state"
         app:itemTextColor="@color/nav_item_color_state"

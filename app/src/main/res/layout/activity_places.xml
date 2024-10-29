@@ -8,16 +8,31 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_places_to_eat"
+        android:id="@+id/toolbar_places_to_eat_detail"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:navigationIconTint="@color/black"
-        android:elevation="4dp"
-        app:navigationContentDescription="Back"
+        android:background="@android:color/white"
         app:navigationIcon="@drawable/ic_arrow_back"
-        android:gravity="center"
+        app:titleTextColor="@android:color/black"
+        style="@style/CenteredToolbar"
+        android:fitsSystemWindows="true"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-         />
+        <!-- Кастомный TextView для заголовка по центру -->
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <androidx.recyclerview.widget.RecyclerView

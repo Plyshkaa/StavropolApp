@@ -1,3 +1,5 @@
+import io.netty.util.ReferenceCountUtil.release
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -12,7 +14,7 @@ android {
         minSdk = 28
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -62,28 +64,17 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.appcompat)
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4") // или последняя версия
-    implementation ("com.google.android.gms:play-services-maps:17.0.0")
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("com.github.bumptech.glide:glide:4.14.2")
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("androidx.cardview:cardview:1.0.0")
-    implementation ("com.squareup.picasso:picasso:2.8")
-    implementation ("androidx.gridlayout:gridlayout:1.0.0")
-    implementation ("androidx.cardview:cardview:1.0.0")
-    implementation ("androidx.viewpager2:viewpager2:1.0.0")
-    implementation ("com.google.android.material:material:1.5.0")
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.google.android.material:material:1.7.0")
-
-
-
-
-
-
-
-
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4") // или последняя версия
+    implementation("com.google.android.gms:play-services-maps:17.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.squareup.picasso:picasso:2.8")
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("com.google.android.material:material:1.7.0")
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.23")
 
 
 
@@ -93,7 +84,6 @@ dependencies {
     implementation(libs.places)
     implementation(libs.androidx.gridlayout)
     implementation(libs.material)
-
 
     // Зависимости для тестирования
     testImplementation(libs.junit)

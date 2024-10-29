@@ -1,5 +1,8 @@
 package com.example.stavropolplacesapp.eat
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -8,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -18,6 +22,8 @@ import com.example.stavropolplacesapp.about.AboutScreen
 import com.example.stavropolplacesapp.places.PlacesActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import java.util.Calendar
 
@@ -29,27 +35,21 @@ class PlaceEatDetailActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
 
-        // Устанавливаем обработчик для навигации
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        // Обработчик для навигации
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    // Открываем экран "Главная"
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, MainActivity::class.java))
                     true
                 }
 
                 R.id.nav_places -> {
-                    // Открываем экран "Места"
-                    val intent = Intent(this, PlacesActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, PlacesActivity::class.java))
                     true
                 }
 
                 R.id.nav_about -> {
-                    // Открываем экран "О приложении"
-                    val intent = Intent(this, AboutScreen::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, AboutScreen::class.java))
                     true
                 }
 
@@ -57,19 +57,43 @@ class PlaceEatDetailActivity : AppCompatActivity() {
             }
         }
 
-        // Настраиваем Toolbar
+        // Получаем данные из Intent
+        val placeName = intent.getStringExtra("placeName") ?: "Название не указано"
+        val placeDescription = intent.getStringExtra("placeDescription")
+        val placeAddress = intent.getStringExtra("placeAddress")
+        val placePhone = intent.getStringExtra("placePhone")
+        val placePhotos = intent.getStringArrayExtra("placePhotos") ?: arrayOf()
+        val placeCoordinates = intent.getStringExtra("placeCoordinates")
+        val placeWorkingHoursJson = intent.getStringExtra("placeWorkingHours")
+        val placeWorkingHours = Gson().fromJson(placeWorkingHoursJson, WorkingDays::class.java)
+
+// Настраиваем Toolbar и устанавливаем название заведения как заголовок
         val toolbar: Toolbar = findViewById(R.id.toolbar_places_to_eat_detail)
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = "Где поесть"
+        // Устанавливаем заголовок в кастомный TextView
+        val toolbarTitle: TextView = findViewById(R.id.toolbar_title)
+        toolbarTitle.text = placeName
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-
         toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_back)
         toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.black))
 
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+
+        // Настройка ViewPager2 и TabLayout
+        val viewPager: ViewPager2 = findViewById(R.id.photo_view_pager)
+        val tabLayout: TabLayout = findViewById(R.id.photo_indicator)
+        viewPager.adapter = PhotoPagerAdapter(this, placePhotos)
+
+        // Подключение TabLayoutMediator для отображения индикатора
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            if (position == viewPager.currentItem) {
+                tab.setCustomView(R.layout.tab_indicator_selected)
+            } else {
+                tab.setCustomView(R.layout.tab_indicator_unselected)
+            }
+        }.attach()
 
         // Прозрачный статус-бар
         window.decorView.systemUiVisibility =
@@ -79,88 +103,84 @@ class PlaceEatDetailActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         // Инициализация виджетов
-        val placeHoursTextView: TextView = findViewById(R.id.place_hours)
-        val expandIcon: ImageView = findViewById(R.id.expand_icon)
-
-        // Получаем данные из Intent
-        val placeName = intent.getStringExtra("placeName")
-        val placeDescription = intent.getStringExtra("placeDescription")
-        val placeAddress = intent.getStringExtra("placeAddress")
-        val placePhone = intent.getStringExtra("placePhone")
-        val placePhotos = intent.getStringArrayExtra("placePhotos")
-        val placeCoordinates = intent.getStringExtra("placeCoordinates")
-        val placeWorkingHoursJson = intent.getStringExtra("placeWorkingHours")
-        val placeWorkingHours = Gson().fromJson(placeWorkingHoursJson, WorkingDays::class.java)
-
-        // Устанавливаем действие для открытия полного расписания через BottomSheetDialog
-        val fullScheduleClickListener = View.OnClickListener {
-            if (placeWorkingHours != null) {
-                showFullSchedule(placeWorkingHours)
-            } else {
-                Log.d("PlaceEatDetailActivity", "Place working hours: $placeWorkingHours")
-
-            }
-        }
-
-        placeHoursTextView.setOnClickListener(fullScheduleClickListener)
-        expandIcon.setOnClickListener(fullScheduleClickListener)
-
-        // Инициализация других виджетов
-        val placeNameTextView: TextView = findViewById(R.id.place_name)
         val placeDescriptionTextView: TextView = findViewById(R.id.place_description)
         val placeAddressTextView: TextView = findViewById(R.id.place_address)
         val placeCoordinatesTextView: TextView = findViewById(R.id.place_coordinates)
         val placePhoneTextView: TextView = findViewById(R.id.place_phone)
+        val placeHoursTextView: TextView = findViewById(R.id.place_hours)
+        val expandIcon: ImageView = findViewById(R.id.expand_icon)
 
-        placeNameTextView.text = placeName
+        // Копирование адреса в буфер обмена при клике
+        placeAddressTextView.setOnClickListener {
+            copyTextToClipboard(placeAddressTextView.text.toString(), "Адрес скопирован в буфер обмена")
+        }
+
+        // Открытие телефона для звонка при клике
+        placePhoneTextView.setOnClickListener {
+            openDialerWithNumber(placePhoneTextView.text.toString())
+        }
+
         placeDescriptionTextView.text = placeDescription
         placeAddressTextView.text = placeAddress
-        placeCoordinatesTextView.text = "$placeCoordinates"
-        placePhoneTextView.text = "$placePhone"
-        // Делаем текст синим и подчеркиваем его как гиперссылку
-        placeCoordinatesTextView.setTextColor(Color.BLUE)
-        placePhoneTextView.setTextColor(Color.BLUE)
+        placeCoordinatesTextView.text = placeCoordinates
+        placePhoneTextView.text = placePhone
 
+        // Устанавливаем действие для открытия полного расписания
+        val fullScheduleClickListener = View.OnClickListener {
+            if (placeWorkingHours != null) {
+                showFullSchedule(placeWorkingHours)
+            } else {
+                Log.d("PlaceEatDetailActivity", "Расписание работы отсутствует")
+            }
+        }
+        placeHoursTextView.setOnClickListener(fullScheduleClickListener)
+        expandIcon.setOnClickListener(fullScheduleClickListener)
+
+        // Отображение рабочего времени на текущий день
         val calendar = Calendar.getInstance()
         val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
-
-        // Маппинг на дни недели и получение рабочего времени для текущего дня
         val workingHours = when (dayOfWeek) {
-            Calendar.MONDAY -> "Сегодня: ${placeWorkingHours?.monday}"
-            Calendar.TUESDAY -> "Сегодня: ${placeWorkingHours?.tuesday}"
-            Calendar.WEDNESDAY -> "Сегодня: ${placeWorkingHours?.wednesday}"
-            Calendar.THURSDAY -> "Сегодня: ${placeWorkingHours?.thursday}"
-            Calendar.FRIDAY -> "Сегодня: ${placeWorkingHours?.friday}"
-            Calendar.SATURDAY -> "Сегодня: ${placeWorkingHours?.saturday}"
-            Calendar.SUNDAY -> "Сегодня: ${placeWorkingHours?.sunday}"
+            Calendar.MONDAY -> "Сегодня: ${placeWorkingHours?.monday ?: "Не указано"}"
+            Calendar.TUESDAY -> "Сегодня: ${placeWorkingHours?.tuesday ?: "Не указано"}"
+            Calendar.WEDNESDAY -> "Сегодня: ${placeWorkingHours?.wednesday ?: "Не указано"}"
+            Calendar.THURSDAY -> "Сегодня: ${placeWorkingHours?.thursday ?: "Не указано"}"
+            Calendar.FRIDAY -> "Сегодня: ${placeWorkingHours?.friday ?: "Не указано"}"
+            Calendar.SATURDAY -> "Сегодня: ${placeWorkingHours?.saturday ?: "Не указано"}"
+            Calendar.SUNDAY -> "Сегодня: ${placeWorkingHours?.sunday ?: "Не указано"}"
             else -> "Часы работы не указаны"
         }
-
         placeHoursTextView.text = workingHours
 
-        // Настройка ViewPager для фото
-        val viewPager: ViewPager2 = findViewById(R.id.photo_view_pager)
-        if (placePhotos != null && placePhotos.isNotEmpty()) {
-            val adapter = PhotoPagerAdapter(placePhotos)
-            viewPager.adapter = adapter
-        }
-
-
-        // Сделать координаты кликабельными и открыть карту
+        // Клик по координатам для открытия в карте
         placeCoordinatesTextView.setOnClickListener {
-            val geoUri = "geo:${placeCoordinates}"
+            val geoUri = "geo:$placeCoordinates"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
             startActivity(intent)
         }
+
+        // Изменение иконки при смене страницы
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                for (i in 0 until tabLayout.tabCount) {
+                    val tab = tabLayout.getTabAt(i)
+                    if (i == position) {
+                        tab?.setCustomView(R.layout.tab_indicator_selected)
+                    } else {
+                        tab?.setCustomView(R.layout.tab_indicator_unselected)
+                    }
+                }
+            }
+        })
+
+
     }
 
-    // Функция для отображения BottomSheetDialog
+    // Функция для отображения BottomSheetDialog с полным расписанием
     private fun showFullSchedule(placeWorkingHours: WorkingDays) {
         val bottomSheetDialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.layout_bottom_sheet_schedule, null)
         bottomSheetDialog.setContentView(view)
 
-        // Инициализация TextView для каждого дня недели
         val mondayTextView: TextView = view.findViewById(R.id.monday_hours)
         val tuesdayTextView: TextView = view.findViewById(R.id.tuesday_hours)
         val wednesdayTextView: TextView = view.findViewById(R.id.wednesday_hours)
@@ -177,9 +197,20 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         saturdayTextView.text = placeWorkingHours.saturday
         sundayTextView.text = placeWorkingHours.sunday
 
-
-        bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
     }
-}
+    // Функция для копирования текста в буфер обмена
+    private fun copyTextToClipboard(text: String, toastMessage: String) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Copied Address", text)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
+    }
 
+    // Функция для открытия номера в приложении для звонков
+    private fun openDialerWithNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$phoneNumber")
+        startActivity(intent)
+    }
+}

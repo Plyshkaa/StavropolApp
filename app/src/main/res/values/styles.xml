@@ -40,6 +40,16 @@
                 <item name="android:windowLightStatusBar">true</item>
 
         </style>
+    <!-- В styles.xml -->
+    <style name="CenteredToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:gravity">center</item>
+        <item name="titleTextAppearance">@style/ToolbarTitleText</item>
+    </style>
+
+    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textAlignment">center</item>
+    </style>
+
 
 
 </resources>
