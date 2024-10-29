@@ -107,6 +107,42 @@
       "mapLink": "https://extraguide.ru/sightmap/?z=14&pt=45.682566,%2041.680536&t=%D0%9E%D0%B7%D0%B5%D1%80%D0%BE%20%D0%A1%D0%BE%D0%BB%D1%91%D0%BD%D0%BE%D0%B5&a=%D0%9A%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82%D1%8B:%2045%C2%B015%E2%80%B244%E2%80%B3%20%D1%81.%20%D1%88.%2042%C2%B051%E2%80%B203%E2%80%B3%20%D0%B2.%20%D0%B4.",
       "rating": 4.0,
       "type": "Природа"
+    },
+    {
+      "id": 10,
+      "name": "Парк Цветник",
+      "fullDescription": "В романе «12 стульев» Киса Воробьянинов просил милостыню именно здесь. Поэтому на входе в «Цветник» стоит памятник киногерою комедии Леонида Гайдая, снятой по книге Ильфа и Петрова.",
+      "description": "В романе «12 стульев» Киса Воробьянинов просил милостыню именно здесь. Поэтому на входе в «Цветник» стоит памятник киногерою комедии Леонида Гайдая, снятой по книге Ильфа и Петрова.",
+      "latitude": 44.036808,
+      "longitude": 43.081792,
+      "imageUrl": "https://avatars.mds.yandex.net/get-vertis-journal/4469561/XXXL_2.jpg_1694086387229/orig",
+      "mapLink": "https://yandex.ru/maps/org/park_tsvetnik/125786153028/?ll=43.081559%2C44.036766&z=18",
+      "rating": 4.0,
+      "type": "Природа"
+    },
+    {
+      "id": 11,
+      "name": "Елагин пруд",
+      "description": "В 2015 году пруд получил статус «особо охраняемый водный объект»",
+      "fullDescription": "В 2015 году пруд получил статус «особо охраняемый водный объект»",
+      "latitude": 45.011930,
+      "longitude": 41.977914,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/335._St._Petersburg._The_First_Northern_Pond_on_Elagin_Island.jpg",
+      "mapLink": "https://yandex.ru/maps/36/stavropol/geo/yelagin_prud/162833398/?from=tabbar&ll=41.977941%2C45.011746&source=serp_navig&utm_source=share&z=18",
+      "rating": 4.0,
+      "type": "Природа"
+    },
+    {
+      "id": 12,
+      "name": "Таманский лес",
+      "description": "В северной части проложена «Тропа здоровья», которая подходит для неспешных прогулок на свежем воздухе",
+      "fullDescription": "В северной части проложена «Тропа здоровья», которая подходит для неспешных прогулок на свежем воздухе",
+      "latitude": 45.047249,
+      "longitude": 41.931220,
+      "imageUrl": "https://avatars.dzeninfra.ru/get-zen_doc/1040957/pub_5b6fdf43a121fd00ab33fe92_5b6fe40381eea600a9497ae6/scale_1200",
+      "mapLink": "https://yandex.ru/maps/-/CDhJYHkd",
+      "rating": 4.0,
+      "type": "Природа"
     }
   ]
 }
