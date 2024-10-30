@@ -13,8 +13,8 @@ android {
         applicationId = "com.example.stavropolplacesapp"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.6"
+        versionCode = 2
+        versionName = "0.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

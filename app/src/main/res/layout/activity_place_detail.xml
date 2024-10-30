@@ -8,10 +8,9 @@
     <!-- ScrollView для прокрутки содержимого -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@android:color/white"
-
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="56dp"
         android:fitsSystemWindows="true">
 
         <!-- Обертка всех элементов внутри ScrollView -->
