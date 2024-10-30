@@ -70,5 +70,332 @@
       "https://avatars.mds.yandex.net/get-altay/5480011/2a0000017daae05174382c8c315cd5ea3192/XXXL",
       "https://avatars.mds.yandex.net/get-altay/2389272/2a00000173e3379cbc9973d0c87cca6b1632/XXXL"
     ]
+  },
+  {
+    "name": "Лаваш",
+    "description": "Ресторан «Лаваш» предлагает грузинскую кухню с традиционными блюдами в уютной атмосфере с этническим колоритом и ненавязчивым музыкальным сопровождением.",
+    "coordinates": {
+      "latitude": 45.038651,
+      "longitude": 41.978475
+    },
+    "phone": "+7 (8652) 23-03-30",
+    "address": "ул. Мира, 285, цокольный этаж",
+    "working_hours": {
+      "monday": "10:00 - 00:00",
+      "tuesday": "10:00 - 00:00",
+      "wednesday": "10:00 - 00:00",
+      "thursday": "10:00 - 00:00",
+      "friday": "10:00 - 00:00",
+      "saturday": "10:00 - 00:00",
+      "sunday": "10:00 - 00:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/216588/2a0000015b1fe997f5223fdf23d2afde3fca/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/4465653/2a0000017811860685eca2cca9f99f9b3477/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/216588/2a0000015b1fe9ec6f5d9f10754196b0a474/XXXL"
+    ]
+  },
+  {
+    "name": "Molinari",
+    "description": "Ресторан «Molinari» предлагает блюда европейской, кавказской и японской кухни. Просторное помещение с летней террасой, где посетители могут наслаждаться уютной атмосферой с видом на закат.",
+    "coordinates": {
+      "latitude": 45.044202,
+      "longitude": 41.970943
+    },
+    "phone": "+7 (8652) 41-54-16",
+    "address": "ул. Дзержинского, 114А, этаж 2",
+    "working_hours": {
+      "monday": "12:00 - 00:00",
+      "tuesday": "12:00 - 00:00",
+      "wednesday": "12:00 - 00:00",
+      "thursday": "12:00 - 00:00",
+      "friday": "12:00 - 00:00",
+      "saturday": "12:00 - 00:00",
+      "sunday": "12:00 - 00:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/1532977/2a000001855814274e0a04e9f8469cee868b/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/10505037/2a00000191752804b918be23d90d6a02139c/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/6446898/2a000001839e1a4428ae5fd564048de0f4a8/XXXL"
+    ]
+  },
+  {
+    "name": "Кухня Family",
+    "description": "«Кухня Family» – уютное кафе с атмосферой и качественным обслуживанием. Специализируется на разнообразных блюдах европейской и русской кухни, предлагает комфортное пространство для семейных и дружеских встреч.",
+    "coordinates": {
+      "latitude": 45.044848,
+      "longitude": 41.975755
+    },
+    "phone": "+7 (962) 444-55-99",
+    "address": "ул. Дзержинского, 102А",
+    "working_hours": {
+      "monday": "12:00 - 01:00",
+      "tuesday": "12:00 - 01:00",
+      "wednesday": "12:00 - 01:00",
+      "thursday": "12:00 - 01:00",
+      "friday": "12:00 - 01:00",
+      "saturday": "12:00 - 01:00",
+      "sunday": "12:00 - 01:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/1532977/2a00000167ec5b149e7b829058b578e603a9/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1529265/2a000001686f5a007ef811cdc05ebbc9367a/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1485972/2a00000168c7b758a8590964dc11f3393077/XXXL"
+    ]
+  },
+  {
+    "name": "Хинкальная №1",
+    "description": "Кафе «Хинкальная №1» предлагает аутентичные блюда грузинской кухни, включая разнообразные виды хинкали и хачапури. Уютная атмосфера и дружелюбный персонал делают это место идеальным для семейных и дружеских встреч.",
+    "coordinates": {
+      "latitude": 45.048529,
+      "longitude": 41.980219
+    },
+    "phone": "+7 (925) 134-27-27",
+    "address": "проспект Карла Маркса, 77",
+    "working_hours": {
+      "monday": "11:00 - 23:00",
+      "tuesday": "11:00 - 23:00",
+      "wednesday": "11:00 - 23:00",
+      "thursday": "11:00 - 23:00",
+      "friday": "11:00 - 23:00",
+      "saturday": "11:00 - 23:00",
+      "sunday": "11:00 - 23:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/1860543/2a0000016f1f1f5c453910e175f58c16bf8b/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1923723/2a0000016f1f20db2ddeff5686105c9c16a2/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/2029876/2a0000016f1f2222e1595c3e1eb6faf6c6d3/XXXL"
+    ]
+  },
+  {
+    "name": "Азиана",
+    "description": "Ресторан «Азиана» предлагает блюда корейской и паназиатской кухни. Стилизованное под азиатскую культуру заведение с гриль-зонами для корейского барбекю и атмосферой, в которой звучит к-поп.",
+    "coordinates": {
+      "latitude": 45.044190,
+      "longitude": 41.985748
+    },
+    "phone": "+7 (915) 460-06-95",
+    "address": "ул. Спартака, 2",
+    "working_hours": {
+      "monday": "12:00 - 23:00",
+      "tuesday": "12:00 - 23:00",
+      "wednesday": "12:00 - 23:00",
+      "thursday": "12:00 - 23:00",
+      "friday": "12:00 - 23:00",
+      "saturday": "12:00 - 23:00",
+      "sunday": "12:00 - 23:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/902116/2a00000186a6c883959b9d9a3d66ae5a350e/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/777564/2a00000186a6c8799e25debcd590f6251424/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1027861/2a0000018603c9aa0af4e2dedccb626726b0/XXXL"
+    ]
+  },
+  {
+    "name": "Батон",
+    "description": "Ресторан «Батон» специализируется на европейской кухне с элементами современных гастрономических трендов. Отличное место для романтических встреч и деловых обедов, предлагает уютную атмосферу и летнюю веранду.",
+    "coordinates": {
+      "latitude": 45.039604,
+      "longitude": 41.945952
+    },
+    "phone": "+7 (8652) 71-50-00",
+    "address": "ул. Михаила Морозова, 117",
+    "working_hours": {
+      "monday": "11:00 - 23:45",
+      "tuesday": "11:00 - 23:45",
+      "wednesday": "11:00 - 23:45",
+      "thursday": "11:00 - 23:45",
+      "friday": "11:00 - 23:45",
+      "saturday": "11:00 - 23:45",
+      "sunday": "11:00 - 23:45"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/5235220/2a000001815d026e3eeba46600aa5cd31def/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/3912953/2a000001769a30bf172c4836aac22d5ebdb2/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/939994/2a00000160697913d7b3cb15735b3e2bd525/XXXL"
+    ]
+  },
+  {
+    "name": "Барбари",
+    "description": "Ресторан «Барбари» специализируется на грузинской кухне и предлагает теплую атмосферу с элементами восточного колорита, включая детскую игровую комнату и летнюю террасу на крыше.",
+    "coordinates": {
+      "latitude": 45.034910,
+      "longitude": 41.957818
+    },
+    "phone": "+7 (962) 450-42-42",
+    "address": "ул. Ломоносова, 37",
+    "working_hours": {
+      "monday": "11:00 - 00:00",
+      "tuesday": "11:00 - 00:00",
+      "wednesday": "11:00 - 00:00",
+      "thursday": "11:00 - 00:00",
+      "friday": "11:00 - 00:00",
+      "saturday": "11:00 - 00:00",
+      "sunday": "11:00 - 00:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/9828935/2a000001895008377792929aaf92712baf16/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/247136/2a0000015b177903148cccf6a45d1fcf824c/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/8377501/2a0000018d7abef0457125c083a4108ac592/XXXL"
+    ]
+  },
+  {
+    "name": "Даханаго",
+    "description": "Кофейня и кондитерская «Даханаго» предлагает широкий выбор десертов и напитков в уютной атмосфере с высоким качеством обслуживания. В меню представлены свежая выпечка, пирожные, торты и фирменные напитки.",
+    "coordinates": {
+      "latitude": 45.039690,
+      "longitude": 41.973703
+    },
+    "phone": "+7 (8652) 22-62-62",
+    "address": "проспект Октябрьской Революции, 30",
+    "working_hours": {
+      "monday": "09:00 - 21:00",
+      "tuesday": "09:00 - 21:00",
+      "wednesday": "09:00 - 21:00",
+      "thursday": "09:00 - 21:00",
+      "friday": "09:00 - 21:00",
+      "saturday": "09:00 - 21:00",
+      "sunday": "09:00 - 21:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/12550566/2a0000018e83d140345b98a573b14d79a6f7/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/12550566/2a0000018e83d13ff7fc94b59787c1ae13d1/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/13299246/2a0000018e83d1452740eca77cf774cff082/XXXL"
+    ]
+  },
+  {
+    "name": "Веранда",
+    "description": "Ресторан «Веранда» предлагает гостям атмосферу уюта и элегантности с блюдами европейской и кавказской кухни. Здесь доступна летняя терраса и отдельная детская комната, что делает его идеальным для семейных посещений и ужинов с друзьями.",
+    "coordinates": {
+      "latitude": 45.046175,
+      "longitude": 41.968758
+    },
+    "phone": "+7 (8652) 71-45-33",
+    "address": "ул. Маршала Жукова, 1",
+    "working_hours": {
+      "monday": "11:00 - 00:00",
+      "tuesday": "11:00 - 00:00",
+      "wednesday": "11:00 - 00:00",
+      "thursday": "11:00 - 00:00",
+      "friday": "11:00 - 00:00",
+      "saturday": "11:00 - 00:00",
+      "sunday": "11:00 - 00:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/11368589/2a0000018c3aa266a3349903004e5aa5acde/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/9761215/2a0000018c3ada62ef413d589bf4f587aca5/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/2094876/2a0000016c3cf011bdc9b9e5d24510026bff/XXXL"
+    ]
+  },
+  {
+    "name": "Маруся",
+    "description": "Семейный ресторан «Маруся» предлагает уютную атмосферу и разнообразное меню с блюдами европейской и русской кухни. В ресторане есть две детские игровые комнаты, зона с приставками и вечера живой музыки.",
+    "coordinates": {
+      "latitude": 45.045985,
+      "longitude": 41.966925
+    },
+    "phone": "+7 (8652) 22-64-44",
+    "address": "ул. Булкина, 11",
+    "working_hours": {
+      "monday": "10:00 - 23:00",
+      "tuesday": "10:00 - 23:00",
+      "wednesday": "10:00 - 23:00",
+      "thursday": "10:00 - 23:00",
+      "friday": "10:00 - 23:00",
+      "saturday": "10:00 - 23:00",
+      "sunday": "10:00 - 23:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/5195020/2a0000018105b09a22f46eaa67010e46d339/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/5255911/2a0000018105b11e57eeee00119015a33e5b/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/14014620/2a00000191db7e2ad87e5fb24d1e3a3f543c/XXXL"
+    ]
+  },
+  {
+    "name": "Тибон",
+    "description": "Ресторан «Тибон» в центре Ставрополя предлагает европейскую кухню и комфортный интерьер с летней террасой. Здесь можно насладиться разнообразными блюдами, в том числе стейками и фирменными лимонадами. В ресторане регулярно обновляется сезонное меню.",
+    "coordinates": {
+      "latitude": 45.046209,
+      "longitude": 41.967844
+    },
+    "phone": "+7 (8652) 71-27-12",
+    "address": "ул. Советская, 16",
+    "working_hours": {
+      "monday": "24 часа",
+      "tuesday": "24 часа",
+      "wednesday": "24 часа",
+      "thursday": "24 часа",
+      "friday": "24 часа",
+      "saturday": "24 часа",
+      "sunday": "24 часа"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/9829646/2a000001905ec7858162be3e4f9b56d0312d/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/9114271/2a0000018fa9f350bb6d62b6e1bac21ac619/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/7979597/2a000001905ec78a994cdfeef97262695e88/XXXL"
+    ]
+  },
+  {
+    "name": "Шеф Пушкин",
+    "description": "Семейный ресторан «Шеф Пушкин» предлагает уютную атмосферу в старинном здании с меню, сочетающим европейскую, русскую и кавказскую кухни. В ресторане доступна игровая комната для детей, летняя терраса, а также бизнес-ланчи и завтраки.",
+    "coordinates": {
+      "latitude": 45.039407,
+      "longitude": 41.962840
+    },
+    "phone": "+7 (8652) 23-34-44",
+    "address": "ул. Пушкина, 11",
+    "working_hours": {
+      "monday": "09:00 - 23:00",
+      "tuesday": "09:00 - 23:00",
+      "wednesday": "09:00 - 23:00",
+      "thursday": "09:00 - 23:00",
+      "friday": "09:00 - 23:00",
+      "saturday": "09:00 - 23:00",
+      "sunday": "09:00 - 23:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/10700956/2a0000018c7d9bd57972d384a6501b6af42d/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1777247/2a0000016de3ea6f8fd4f36082d2ee8cac25/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/6333331/2a00000180d6938b3f51afc73138a8b0e32d/XXXL"
+    ]
+  },
+  {
+    "name": "Театральное",
+    "description": "Кафе «Театральное» — уютное место в центре Ставрополя с панорамным видом, которое предлагает завтраки, бизнес-ланчи и десерты. Интерьер оформлен в классическом стиле с элементами театрального декора, создавая атмосферу уюта и комфорта.",
+    "coordinates": {
+      "latitude": 45.041937,
+      "longitude": 41.965145
+    },
+    "phone": "+7 (8652) 67-17-77",
+    "address": "ул. Михаила Морозова, 1, цокольный этаж",
+    "working_hours": {
+      "monday": "08:00 - 23:00",
+      "tuesday": "08:00 - 23:00",
+      "wednesday": "08:00 - 23:00",
+      "thursday": "08:00 - 23:00",
+      "friday": "08:00 - 23:00",
+      "saturday": "08:00 - 23:00",
+      "sunday": "08:00 - 23:00"
+    },
+    "photos": [
+      "https://avatars.mds.yandex.net/get-altay/6010116/2a00000184d4526b0f35851f19bef97a148a/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/1439437/2a0000018ce7c0c7e9ae413269040f1d1cfa/XXXL",
+      "https://avatars.mds.yandex.net/get-altay/481843/2a0000018d18977c96d4666e71abbdbbe313/XXXL"
+    ]
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ]
