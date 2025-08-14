@@ -10,7 +10,8 @@ data class Place(
     val imageUrl: String,
     val mapLink: String,
     val rating: Double,
-    val type: String
+    val type: String,
+    val isFavorite: Boolean = false
 )
 
 data class PlacesResponse(

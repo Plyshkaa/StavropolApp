@@ -8,6 +8,7 @@
 
 
     <application
+        android:name=".StavropolApp"
         android:allowBackup="true"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/logo_app"
@@ -41,6 +42,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             /> <!-- Добавляем PersonDetailActivity -->
         <activity android:name=".region.RegionDetailActivity" />
+        <activity android:name=".presentation.PlacesComposeActivity" />
         <activity android:name=".afisha.AfishaActivity" />
         <activity android:name=".favorites.FavoritesActivity" />
 
