@@ -24,6 +24,7 @@ import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
 import com.example.stavropolplacesapp.about.AboutScreen
 import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.favorites.FavoritesActivity
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -51,7 +52,7 @@ class PlacesToEatActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         bottomNavigationView.menu.setGroupCheckable(0, false, true)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     startActivity(Intent(this, MainActivity::class.java))
@@ -59,6 +60,10 @@ class PlacesToEatActivity : AppCompatActivity() {
                 }
                 R.id.nav_places -> {
                     startActivity(Intent(this, PlacesActivity::class.java))
+                    true
+                }
+                R.id.nav_favorites -> {
+                    startActivity(Intent(this, com.example.stavropolplacesapp.favorites.FavoritesActivity::class.java))
                     true
                 }
                 R.id.nav_about -> {

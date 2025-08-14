@@ -18,6 +18,7 @@ import com.example.stavropolplacesapp.R
 import com.example.stavropolplacesapp.about.AboutScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.example.stavropolplacesapp.favorites.FavoritesActivity
+import com.example.stavropolplacesapp.favorites.FavoritePlacesStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -79,6 +80,12 @@ class PlacesActivity : AppCompatActivity() {
         // Настраиваем адаптер для RecyclerView
         placesAdapter = PlacesAdapter()
         placesRecyclerView.adapter = placesAdapter
+        
+        // Обработчик изменения избранного
+        placesAdapter.onFavoriteChanged = { placeId, isFavorite ->
+            // Обновляем список при изменении избранного
+            loadPlaces()
+        }
 
         // Загружаем данные
         loadPlaces()
@@ -110,16 +117,33 @@ class PlacesActivity : AppCompatActivity() {
 
     private fun loadPlaces() {
         CoroutineScope(Dispatchers.IO).launch {
-            val places = JsonUtils.loadPlacesFromJson(this@PlacesActivity)
-            withContext(Dispatchers.Main) {
-                if (places != null) {
-                    placesList = places
+            try {
+                val places = JsonUtils.loadPlacesFromJson(this@PlacesActivity)
+                withContext(Dispatchers.Main) {
+                                    if (places != null && places.isNotEmpty()) {
+                    // Обновляем состояние избранного для каждого места
+                    val placesWithFavorites = places.map { place ->
+                        place.copy(isFavorite = FavoritePlacesStore.isFavorite(this@PlacesActivity, place.id))
+                    }
+                    placesList = placesWithFavorites
                     placesAdapter.submitList(placesList)
                 } else {
+                        // Показываем пустое состояние или ошибку
+                        placesAdapter.submitList(emptyList())
+                        Toast.makeText(
+                            this@PlacesActivity,
+                            "Нет данных для отображения",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    placesAdapter.submitList(emptyList())
                     Toast.makeText(
                         this@PlacesActivity,
-                        "Ошибка загрузки данных",
-                        Toast.LENGTH_SHORT
+                        "Ошибка загрузки данных: ${e.message}",
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }

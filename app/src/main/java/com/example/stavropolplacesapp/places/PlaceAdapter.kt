@@ -46,7 +46,7 @@ class PlacesAdapter(private val showDescription: Boolean = true) : ListAdapter<P
                 ImageUtils.loadImage(itemView.context, place.imageUrl, placeImage)
 
                 // Иконка избранного
-                favoriteToggle.isSelected = FavoritePlacesStore.isFavorite(itemView.context, place.id)
+                favoriteToggle.isSelected = place.isFavorite
                 favoriteToggle.setOnClickListener {
                     val nowFav = FavoritePlacesStore.toggleFavorite(itemView.context, place.id)
                     favoriteToggle.isSelected = nowFav

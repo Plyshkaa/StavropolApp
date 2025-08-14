@@ -7,15 +7,16 @@ import com.example.stavropolplacesapp.places.Place
 import com.example.stavropolplacesapp.places.PlacesResponseList
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.IOException
 
 object JsonUtils {
     
-    private const val TAG = Constants.TAG_JSON_UTILS
+    const val TAG = Constants.TAG_JSON_UTILS
     private const val PLACES_FILE = Constants.PLACES_JSON_FILE
     
     // Кэшируем Gson для лучшей производительности
-    private val gson: Gson by lazy {
+    val gson: Gson by lazy {
         GsonBuilder()
             .setLenient()
             .create()
@@ -27,7 +28,8 @@ object JsonUtils {
                 val jsonString = inputStream.bufferedReader().use { it.readText() }
                 Log.d(TAG, "JSON загружен, размер: ${jsonString.length} символов")
 
-                val placesResponse = gson.fromJson(jsonString, PlacesResponseList::class.java)
+                val type = object : TypeToken<PlacesResponseList>() {}.type
+                val placesResponse = gson.fromJson<PlacesResponseList>(jsonString, type)
                 Log.d(TAG, "Места загружены: ${placesResponse.places.size}")
                 
                 placesResponse.places
@@ -42,11 +44,12 @@ object JsonUtils {
     }
 
     // Добавляем функцию для загрузки других JSON файлов
-    fun <T> loadFromJson(context: Context, fileName: String, classOfT: Class<T>): T? {
+    inline fun <reified T> loadFromJson(context: Context, fileName: String): T? {
         return try {
             context.assets.open(fileName).use { inputStream ->
                 val jsonString = inputStream.bufferedReader().use { it.readText() }
-                gson.fromJson(jsonString, classOfT)
+                val type = object : TypeToken<T>() {}.type
+                gson.fromJson<T>(jsonString, type)
             }
         } catch (e: IOException) {
             Log.e(TAG, "Ошибка при чтении файла $fileName: ${e.message}")

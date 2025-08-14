@@ -14,8 +14,8 @@ android {
         applicationId = "com.example.stavropolplacesapp"
         minSdk = 28
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.1.0"
+        versionCode = 5
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -34,7 +34,7 @@ android {
     
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -104,10 +104,7 @@ dependencies {
     
     // Hilt temporarily disabled for Compose migration
     
-    // Room for database
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    // Room temporarily disabled - not used in current implementation
     
     // Coil for image loading in Compose
     implementation("io.coil-kt:coil-compose:2.5.0")
