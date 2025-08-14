@@ -48,6 +48,13 @@ class AboutScreen : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.nav_favorites -> {
+                    // Открываем экран "Избранное"
+                    val intent = Intent(this, com.example.stavropolplacesapp.favorites.FavoritesActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
                 R.id.nav_about -> {
                     // Мы уже на экране "О приложении", нет необходимости переходить
                     true

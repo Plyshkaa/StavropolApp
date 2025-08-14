@@ -41,7 +41,7 @@
         app:titleTextColor="@android:color/black"
         android:fitsSystemWindows="true"
         android:gravity="center"
-        android:elevation="4dp"
+        android:elevation="0dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         tools:ignore="MissingConstraints" />
 

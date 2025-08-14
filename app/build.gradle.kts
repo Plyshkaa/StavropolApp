@@ -13,8 +13,8 @@ android {
         applicationId = "com.example.stavropolplacesapp"
         minSdk = 28
         targetSdk = 34
-        versionCode = 2
-        versionName = "0.7"
+        versionCode = 3
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,24 +22,39 @@ android {
         }
     }
 
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+    
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        debug {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -52,40 +67,43 @@ android {
 }
 
 dependencies {
+    // Core Android dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.gridlayout)
+    implementation(libs.androidx.viewpager2)
+    
+    // Material Design
+    implementation(libs.material)
+    
+    // Compose dependencies
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation("com.google.code.gson:gson:2.8.8")
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.appcompat)
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4") // или последняя версия
-    implementation("com.google.android.gms:play-services-maps:17.0.0")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("com.github.bumptech.glide:glide:4.14.2")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation("com.squareup.picasso:picasso:2.8")
-    implementation("androidx.gridlayout:gridlayout:1.0.0")
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
-    implementation("com.google.android.material:material:1.7.0")
-    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.23")
-
-
-
-
-    // Удалите дубликаты
+    
+    // Google Services
     implementation(libs.play.services.basement)
     implementation(libs.places)
-    implementation(libs.androidx.gridlayout)
-    implementation(libs.material)
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    
+    // JSON parsing
+    implementation("com.google.code.gson:gson:2.10.1")
+    
+    // Image loading - используем только Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+    
+    // GIF support
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.25")
 
-    // Зависимости для тестирования
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -93,7 +111,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    // Зависимость для Glide
-    implementation("com.github.bumptech.glide:glide:4.12.0")
 }

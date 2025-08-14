@@ -8,6 +8,10 @@
         android:icon="@drawable/ic_places"
         android:title="Места" />
     <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="Избранное" />
+    <item
         android:id="@+id/nav_about"
         android:icon="@drawable/about"
         android:title="О приложении" />

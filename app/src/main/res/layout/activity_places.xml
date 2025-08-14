@@ -16,7 +16,7 @@
         app:titleTextColor="@android:color/black"
         style="@style/CenteredToolbar"
         android:fitsSystemWindows="true"
-        android:elevation="4dp"
+        android:elevation="0dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

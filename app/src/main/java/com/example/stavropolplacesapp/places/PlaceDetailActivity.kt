@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
 import com.example.stavropolplacesapp.about.AboutScreen
+import com.example.stavropolplacesapp.Constants
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -50,6 +51,12 @@ class PlaceDetailActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.nav_favorites -> {
+                    // Открываем экран "Избранное"
+                    val intent = Intent(this, com.example.stavropolplacesapp.favorites.FavoritesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
                     val intent = Intent(this, AboutScreen::class.java)
@@ -60,6 +67,9 @@ class PlaceDetailActivity : AppCompatActivity() {
             }
         }
 
+        // Получаем название места из интента
+        val placeName = intent.getStringExtra(Constants.EXTRA_NAME) ?: "Детали места"
+        
         // В твоей Activity
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -71,7 +81,7 @@ class PlaceDetailActivity : AppCompatActivity() {
 
 // Если используется кастомный TextView для заголовка
         val toolbarTitle: TextView = findViewById(R.id.toolbar_title)
-        toolbarTitle.text = "Детали места"
+        toolbarTitle.text = placeName
         // Прозрачный статус-бар с видимыми иконками
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         window.statusBarColor = Color.TRANSPARENT

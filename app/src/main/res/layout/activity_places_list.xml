@@ -11,7 +11,10 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        app:liftOnScroll="false">
 
         <!-- Toolbar -->
         <androidx.appcompat.widget.Toolbar
@@ -22,7 +25,8 @@
             app:titleTextColor="@android:color/black"
             android:background="@android:color/white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:elevation="4dp"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
             android:text="Места">
 
             <!-- Center the title using a TextView -->
@@ -43,8 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginBottom="80dp"
-         /> <!-- Добавляем отступ для BottomNavigationView -->
+        android:layout_marginBottom="80dp" />
 
     <!-- Панель навигации -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -68,6 +71,20 @@
         android:clipToPadding="false"
         android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <!-- Пустое состояние для списков -->
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="24dp"
+        android:padding="8dp"
+        android:text="Здесь будут ваши избранные места. Отмечайте сердечком понравившиеся объекты."
+        android:textAlignment="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:visibility="gone"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

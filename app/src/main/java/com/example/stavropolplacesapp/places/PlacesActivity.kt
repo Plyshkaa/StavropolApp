@@ -1,6 +1,6 @@
 package com.example.stavropolplacesapp.places
 
-import JsonUtils
+import com.example.stavropolplacesapp.JsonUtils
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
@@ -17,6 +17,7 @@ import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
 import com.example.stavropolplacesapp.about.AboutScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.stavropolplacesapp.favorites.FavoritesActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,6 +56,12 @@ class PlacesActivity : AppCompatActivity() {
                     finish()
                     true
                 }
+                R.id.nav_favorites -> {
+                    val intent = Intent(this, FavoritesActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    true
+                }
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
                     val intent = Intent(this, AboutScreen::class.java)
@@ -70,7 +77,7 @@ class PlacesActivity : AppCompatActivity() {
         placesRecyclerView.layoutManager = LinearLayoutManager(this)
 
         // Настраиваем адаптер для RecyclerView
-        placesAdapter = PlacesAdapter(placesList)
+        placesAdapter = PlacesAdapter()
         placesRecyclerView.adapter = placesAdapter
 
         // Загружаем данные
@@ -107,7 +114,7 @@ class PlacesActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (places != null) {
                     placesList = places
-                    placesAdapter.updateData(placesList)
+                    placesAdapter.submitList(placesList)
                 } else {
                     Toast.makeText(
                         this@PlacesActivity,

@@ -1,6 +1,6 @@
 package com.example.stavropolplacesapp.places
 
-import JsonUtils
+import com.example.stavropolplacesapp.JsonUtils
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +24,7 @@ class PlacesListActivity : AppCompatActivity() {
 
         // Инициализируем RecyclerView
         placesRecyclerView = findViewById(R.id.places_recycler_view)
-        placesAdapter = PlacesAdapter(placesList)
+        placesAdapter = PlacesAdapter(showDescription = true)
         placesRecyclerView.layoutManager = LinearLayoutManager(this)
         placesRecyclerView.adapter = placesAdapter
 
@@ -39,7 +39,7 @@ class PlacesListActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (places != null) {
                     placesList = places
-                    placesAdapter.updateData(placesList)
+                    placesAdapter.submitList(placesList)
                 } else {
                     Toast.makeText(
                         this@PlacesListActivity,
