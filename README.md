@@ -23,6 +23,17 @@
 - Единая навигация через `MainActivity` + `NavHost`.
 - Данные сейчас локальные, из `app/src/main/assets/*.json`.
 
+### Диаграмма (упрощённо)
+```mermaid
+flowchart LR
+  UI["UI (Compose + XML)"] --> NAV["MainActivity + NavHost"]
+  NAV --> VM["ViewModels / State"]
+  VM --> REPO["Repositories"]
+  REPO --> JSON["Assets JSON"]
+  UI --> LEG["Legacy Activities (постепенно удаляются)"]
+  REPO --> EXT["External SDKs (Maps/Places)"]
+```
+
 ## Структура проекта (ключевые каталоги)
 ```
 app/src/main/java/com/example/stavropolplacesapp/
@@ -41,6 +52,71 @@ app/src/main/java/com/example/stavropolplacesapp/
 - `eat_place.json`
 - `people.json`
 - `region.json`
+
+### Формат данных (кратко)
+`places.json` (места):
+```json
+[
+  {
+    "id": 1,
+    "name": "Название места",
+    "shortDescription": "Короткое описание",
+    "fullDescription": "Полное описание",
+    "imageUrl": "https://...",
+    "category": "Парки",
+    "latitude": 45.0,
+    "longitude": 41.0
+  }
+]
+```
+
+`eat_place.json` (где поесть):
+```json
+[
+  {
+    "id": 1,
+    "name": "Название",
+    "description": "Описание",
+    "address": "Адрес",
+    "phone": "+7...",
+    "coordinates": "45.0,41.0",
+    "photos": ["https://..."],
+    "workingHours": {
+      "monday": "10:00-22:00",
+      "tuesday": "10:00-22:00",
+      "wednesday": "10:00-22:00",
+      "thursday": "10:00-22:00",
+      "friday": "10:00-23:00",
+      "saturday": "10:00-23:00",
+      "sunday": "10:00-21:00"
+    }
+  }
+]
+```
+
+`people.json` (земляки):
+```json
+[
+  {
+    "id": 1,
+    "name": "ФИО",
+    "imageUrl": "https://...",
+    "description": "<p>HTML описание</p>"
+  }
+]
+```
+
+`region.json` (региональные материалы):
+```json
+[
+  {
+    "id": 1,
+    "title": "Заголовок",
+    "description": "Текст",
+    "imageUrl": "https://..."
+  }
+]
+```
 
 ## Сборка и запуск
 Требования:
