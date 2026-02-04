@@ -16,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
-import com.example.stavropolplacesapp.about.AboutScreen
-import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.Constants
+import com.example.stavropolplacesapp.navigation.AppRoutes
+import com.example.stavropolplacesapp.navigation.MainNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayout
@@ -39,17 +39,17 @@ class PlaceEatDetailActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.HOME)
                     true
                 }
 
                 R.id.nav_places -> {
-                    startActivity(Intent(this, PlacesActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.PLACES)
                     true
                 }
 
                 R.id.nav_about -> {
-                    startActivity(Intent(this, AboutScreen::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.ABOUT)
                     true
                 }
 

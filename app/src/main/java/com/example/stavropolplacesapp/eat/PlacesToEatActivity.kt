@@ -20,11 +20,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
-import com.example.stavropolplacesapp.about.AboutScreen
-import com.example.stavropolplacesapp.places.PlacesActivity
-import com.example.stavropolplacesapp.favorites.FavoritesActivity
+import com.example.stavropolplacesapp.Constants
+import com.example.stavropolplacesapp.navigation.AppRoutes
+import com.example.stavropolplacesapp.navigation.MainNavigation
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -55,19 +54,19 @@ class PlacesToEatActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.HOME)
                     true
                 }
                 R.id.nav_places -> {
-                    startActivity(Intent(this, PlacesActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.PLACES)
                     true
                 }
                 R.id.nav_favorites -> {
-                    startActivity(Intent(this, com.example.stavropolplacesapp.favorites.FavoritesActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.FAVORITES)
                     true
                 }
                 R.id.nav_about -> {
-                    startActivity(Intent(this, AboutScreen::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.ABOUT)
                     true
                 }
                 else -> false

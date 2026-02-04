@@ -31,11 +31,9 @@ class FullScreenImageActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-// Настройки статус-бара
+        // Настройки статус-бара
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        window.statusBarColor = Color.WHITE
-        window.decorView.systemUiVisibility =
-            window.decorView.systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = Color.BLACK
 
     }
 }

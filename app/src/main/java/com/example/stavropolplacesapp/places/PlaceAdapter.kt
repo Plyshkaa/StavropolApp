@@ -1,15 +1,14 @@
 package com.example.stavropolplacesapp.places
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stavropolplacesapp.Constants
 import com.example.stavropolplacesapp.databinding.ItemPlaceBinding
 import com.example.stavropolplacesapp.utils.ImageUtils
 import com.example.stavropolplacesapp.favorites.FavoritePlacesStore
+import com.example.stavropolplacesapp.navigation.PlaceNavigation
 
 class PlacesAdapter(private val showDescription: Boolean = true) : ListAdapter<Place, PlacesAdapter.PlaceViewHolder>(PlaceDiffCallback()) {
 
@@ -55,16 +54,7 @@ class PlacesAdapter(private val showDescription: Boolean = true) : ListAdapter<P
 
                 itemView.setOnClickListener {
                     val context = itemView.context
-                    val intent = Intent(context, PlaceDetailActivity::class.java).apply {
-                        putExtra(Constants.EXTRA_NAME, place.name)
-                        putExtra(Constants.EXTRA_DESCRIPTION, place.description)
-                        putExtra(Constants.EXTRA_FULL_DESCRIPTION, place.fullDescription)
-                        putExtra(Constants.EXTRA_IMAGE_URL, place.imageUrl)
-                        putExtra(Constants.EXTRA_LATITUDE, place.latitude)
-                        putExtra(Constants.EXTRA_LONGITUDE, place.longitude)
-                        putExtra(Constants.EXTRA_COORDINATES, "${place.latitude}°N ${place.longitude}°E")
-                    }
-                    context.startActivity(intent)
+                    PlaceNavigation.openPlaceDetails(context, place)
                 }
             }
         }
@@ -72,7 +62,7 @@ class PlacesAdapter(private val showDescription: Boolean = true) : ListAdapter<P
 
     private class PlaceDiffCallback : DiffUtil.ItemCallback<Place>() {
         override fun areItemsTheSame(oldItem: Place, newItem: Place): Boolean {
-            return oldItem.name == newItem.name
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Place, newItem: Place): Boolean {

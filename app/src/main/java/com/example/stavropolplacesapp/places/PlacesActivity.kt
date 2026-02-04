@@ -13,13 +13,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stavropolplacesapp.MainActivity
 import com.example.stavropolplacesapp.R
-import com.example.stavropolplacesapp.about.AboutScreen
+import com.example.stavropolplacesapp.Constants
+import com.example.stavropolplacesapp.navigation.AppRoutes
+import com.example.stavropolplacesapp.navigation.MainNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.example.stavropolplacesapp.favorites.FavoritesActivity
 import com.example.stavropolplacesapp.favorites.FavoritePlacesStore
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -45,28 +45,24 @@ class PlacesActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     // Открываем экран "Главная"
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.HOME)
                     finish()
                     true
                 }
                 R.id.nav_places -> {
                     // Открываем экран "Места"
-                    val intent = Intent(this, PlacesActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.PLACES)
                     finish()
                     true
                 }
                 R.id.nav_favorites -> {
-                    val intent = Intent(this, FavoritesActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.FAVORITES)
                     finish()
                     true
                 }
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
-                    val intent = Intent(this, AboutScreen::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.ABOUT)
                     finish()
                     true
                 }
@@ -116,7 +112,7 @@ class PlacesActivity : AppCompatActivity() {
     }
 
     private fun loadPlaces() {
-        CoroutineScope(Dispatchers.IO).launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val places = JsonUtils.loadPlacesFromJson(this@PlacesActivity)
                 withContext(Dispatchers.Main) {

@@ -3,13 +3,14 @@ package com.example.stavropolplacesapp.presentation.places
 import com.example.stavropolplacesapp.core.BaseViewModel
 import com.example.stavropolplacesapp.core.UiState
 import com.example.stavropolplacesapp.data.repository.PlacesRepository
-import com.example.stavropolplacesapp.data.repository.PlacesRepositoryImpl
 import com.example.stavropolplacesapp.places.Place
-import com.example.stavropolplacesapp.StavropolApp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class PlacesViewModel : BaseViewModel<PlacesState, PlacesEvent>() {
-    
-    private val placesRepository = PlacesRepositoryImpl(StavropolApp.instance)
+@HiltViewModel
+class PlacesViewModel @Inject constructor(
+    private val placesRepository: PlacesRepository
+) : BaseViewModel<PlacesState, PlacesEvent>() {
 
     override fun createInitialState(): PlacesState = PlacesState()
 

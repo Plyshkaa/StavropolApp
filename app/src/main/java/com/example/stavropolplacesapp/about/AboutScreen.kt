@@ -12,8 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.example.stavropolplacesapp.MainActivity
-import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.navigation.AppRoutes
+import com.example.stavropolplacesapp.navigation.MainNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AboutScreen : AppCompatActivity() {
@@ -36,22 +36,19 @@ class AboutScreen : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     // Открываем экран "Главная"
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.HOME)
                     finish()
                     true
                 }
                 R.id.nav_places -> {
                     // Открываем экран "Места"
-                    val intent = Intent(this, PlacesActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.PLACES)
                     finish()
                     true
                 }
                 R.id.nav_favorites -> {
                     // Открываем экран "Избранное"
-                    val intent = Intent(this, com.example.stavropolplacesapp.favorites.FavoritesActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.FAVORITES)
                     finish()
                     true
                 }

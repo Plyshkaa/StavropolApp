@@ -29,10 +29,27 @@ object FavoritePlacesStore {
         return nowFavorite
     }
 
+    fun addFavorite(context: Context, placeId: Int) {
+        val prefs = getPrefs(context)
+        val current = prefs.getStringSet(KEY_IDS, emptySet())?.toMutableSet() ?: mutableSetOf()
+        val idStr = placeId.toString()
+        if (current.add(idStr)) {
+            prefs.edit().putStringSet(KEY_IDS, current).apply()
+        }
+    }
+
+    fun removeFavorite(context: Context, placeId: Int) {
+        val prefs = getPrefs(context)
+        val current = prefs.getStringSet(KEY_IDS, emptySet())?.toMutableSet() ?: mutableSetOf()
+        val idStr = placeId.toString()
+        if (current.remove(idStr)) {
+            prefs.edit().putStringSet(KEY_IDS, current).apply()
+        }
+    }
+
     fun getAllFavoriteIds(context: Context): Set<Int> {
         val ids = getPrefs(context).getStringSet(KEY_IDS, emptySet()) ?: emptySet()
         return ids.mapNotNull { it.toIntOrNull() }.toSet()
     }
 }
-
 

@@ -1,5 +1,7 @@
 package com.example.stavropolplacesapp.places
 
+import java.io.Serializable
+
 data class Place(
     val id: Int,
     val name: String,
@@ -12,9 +14,8 @@ data class Place(
     val rating: Double,
     val type: String,
     val isFavorite: Boolean = false
-)
+) : Serializable
 
 data class PlacesResponse(
     val places: List<Place>
 )
-

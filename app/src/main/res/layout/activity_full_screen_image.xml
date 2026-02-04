@@ -9,13 +9,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="#66000000"
         android:elevation="0dp"
         android:fitsSystemWindows="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:titleTextColor="@android:color/black" />
+        app:navigationIconTint="@android:color/white"
+        app:titleTextColor="@android:color/white" />
 
     <!-- ViewPager2 для отображения изображений в полноэкранном режиме -->
     <androidx.viewpager2.widget.ViewPager2

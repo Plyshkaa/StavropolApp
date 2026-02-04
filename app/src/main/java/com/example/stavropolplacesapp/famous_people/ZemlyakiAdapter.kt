@@ -1,6 +1,5 @@
 package com.example.stavropolplacesapp.famous_people
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.stavropolplacesapp.R
+import com.example.stavropolplacesapp.navigation.PersonNavigation
 
 data class FamousPeoplePerson(val name: String, val imageUrl: String, val description: String)
 
@@ -31,15 +31,9 @@ class ZemlyakiAdapter(private val people: List<FamousPeoplePerson>, private val 
         Glide.with(holder.itemView.context).load(person.imageUrl).into(holder.personImage)
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, PersonDetailActivity::class.java).apply {
-                putExtra("personName", person.name)
-                putExtra("imageUrl", person.imageUrl)
-                putExtra("description", person.description) // Передаем описание
-            }
-            context.startActivity(intent)
+            PersonNavigation.openPersonDetails(context, person)
         }
     }
 
     override fun getItemCount() = people.size
 }
-

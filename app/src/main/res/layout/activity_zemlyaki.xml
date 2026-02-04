@@ -55,6 +55,8 @@
         app:itemIconSize="24dp"
         app:itemIconTint="@color/nav_item_color_state"
         app:itemTextColor="@color/nav_item_color_state"
+        app:itemTextAppearanceActive="@style/BottomNavigationActiveText"
+        app:itemTextAppearanceInactive="@style/BottomNavigationInactiveText"
         app:labelVisibilityMode="labeled"
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

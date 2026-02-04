@@ -15,9 +15,8 @@ import com.example.stavropolplacesapp.places.Place
 import com.example.stavropolplacesapp.places.PlacesAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.content.Intent
-import com.example.stavropolplacesapp.MainActivity
-import com.example.stavropolplacesapp.about.AboutScreen
-import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.navigation.AppRoutes
+import com.example.stavropolplacesapp.navigation.MainNavigation
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -64,18 +63,18 @@ class FavoritesActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.HOME)
                     finish()
                     true
                 }
                 R.id.nav_places -> {
-                    startActivity(Intent(this, PlacesActivity::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.PLACES)
                     finish()
                     true
                 }
                 R.id.nav_favorites -> true
                 R.id.nav_about -> {
-                    startActivity(Intent(this, AboutScreen::class.java))
+                    MainNavigation.openRoute(this, AppRoutes.ABOUT)
                     finish()
                     true
                 }
@@ -104,5 +103,3 @@ class FavoritesActivity : AppCompatActivity() {
         }
     }
 }
-
-

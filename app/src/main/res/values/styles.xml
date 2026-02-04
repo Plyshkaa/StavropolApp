@@ -1,13 +1,13 @@
 <resources>
     <!-- Стиль для активного состояния текста в BottomNavigationView -->
     <style name="BottomNavigationActiveText" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/blue</item> <!-- Цвет для активного элемента -->
     </style>
 
     <!-- Стиль для неактивного состояния текста в BottomNavigationView -->
     <style name="BottomNavigationInactiveText" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:textColor">@color/gray</item> <!-- Цвет для неактивного элемента -->
     </style>
 

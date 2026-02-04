@@ -13,9 +13,9 @@ import org.json.JSONObject
 import java.io.IOException
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.example.stavropolplacesapp.MainActivity
-import com.example.stavropolplacesapp.about.AboutScreen
-import com.example.stavropolplacesapp.places.PlacesActivity
+import com.example.stavropolplacesapp.Constants
+import com.example.stavropolplacesapp.navigation.AppRoutes
+import com.example.stavropolplacesapp.navigation.MainNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -37,20 +37,17 @@ class ZemlyakiActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     // Открываем экран "Главная"
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.HOME)
                     true
                 }
                 R.id.nav_places -> {
                     // Открываем экран "Места"
-                    val intent = Intent(this, PlacesActivity::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.PLACES)
                     true
                 }
                 R.id.nav_about -> {
                     // Открываем экран "О приложении"
-                    val intent = Intent(this, AboutScreen::class.java)
-                    startActivity(intent)
+                    MainNavigation.openRoute(this, AppRoutes.ABOUT)
                     true
                 }
                 else -> false

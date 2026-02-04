@@ -27,11 +27,11 @@ class PlacesRepositoryImpl(
     }
 
     override suspend fun addToFavorites(placeId: Int) {
-        FavoritePlacesStore.toggleFavorite(context, placeId)
+        FavoritePlacesStore.addFavorite(context, placeId)
     }
 
     override suspend fun removeFromFavorites(placeId: Int) {
-        FavoritePlacesStore.toggleFavorite(context, placeId)
+        FavoritePlacesStore.removeFavorite(context, placeId)
     }
 
     override suspend fun isFavorite(placeId: Int): Boolean {
